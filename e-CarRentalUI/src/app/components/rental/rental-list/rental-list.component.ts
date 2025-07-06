@@ -20,7 +20,7 @@ export class RentalListComponent implements OnInit {
   private userKey = 'USER';
   rentals: RentalData[] = [];
   error: any;
-  size: number = 30;
+  size: number = 20;
   currentPage: number = 1;
   searchText: string = '';
   rentalId!: number;
@@ -46,6 +46,10 @@ export class RentalListComponent implements OnInit {
 
   navigateToRentalDetails(id: number) {
     this.router.navigate(['/rental', id]);
+  }
+
+  isCarIdInCars(): boolean {
+    return this.cars.some(car => car.id === this.rentalData.carId);
   }
 
   setEmptyFields() {

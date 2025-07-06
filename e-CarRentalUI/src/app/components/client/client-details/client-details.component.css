@@ -1,13 +1,26 @@
 .fields-container {
     margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-right: 1rem;
-    margin-left: 1rem;
+    width: 35%;
+    margin-right: 2%;
 }
 
 .list-container {
     margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-right: 1rem;
-    margin-left: 1rem;
+    width: 63%;
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 900px) {
+    .fields-container {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .list-container {
+        margin-top: 1rem;
+        width: 100%;
+    }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../../services/account.service';
 import { map, Observable } from 'rxjs';
+import { Role } from '../../Constants/Role';
 
 @Component({
   selector: 'app-navbar',
@@ -23,12 +24,17 @@ export class NavbarComponent{
     this.accountService.logout();
   }
 
-  isActive(route: string): boolean {
+  isHomeActive(route: string): boolean {
     return this.router.url === '/' + route;
   }
 
+  isActive(route: string): boolean {
+    const url = this.router.url;
+    return url.includes(route) || url.includes(route);
+  }
+
   isAdmin(): Observable<boolean> {
-    return this.accountService.isAdmin().pipe(
+    return this.accountService.hasAccessToRoles([Role.Admin]).pipe(
       map(isAdmin => {
         return isAdmin;
       })

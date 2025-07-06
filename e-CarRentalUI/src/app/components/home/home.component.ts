@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from 'rxjs';
 import { AccountService } from '../../services/account.service';
+import { Role } from '../../Constants/Role';
 
 @Component({
   selector: 'app-home',
@@ -41,10 +42,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getRentalCount();
     this.getCarCount();
-    this.getEmployeeCount();
     this.getClientCount();
     this.getPaymentCount();
     this.getRentalMonthCount();
+
+    this.isAdmin$.subscribe(isAdmin => {
+      if (isAdmin) {
+        this.getEmployeeCount();
+      }
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -137,7 +143,7 @@ export class HomeComponent implements OnInit {
   }
 
   isAdmin(): Observable<boolean> {
-    return this.accountService.isAdmin().pipe(
+    return this.accountService.hasAccessToRoles([Role.Admin]).pipe(
       map(isAdmin => {
         return isAdmin;
       })

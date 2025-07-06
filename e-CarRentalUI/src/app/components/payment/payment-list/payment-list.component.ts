@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { map, Observable } from 'rxjs';
 import { AccountService } from '../../../services/account.service';
+import { Role } from '../../../Constants/Role';
 
 @Component({
   selector: 'app-payment-list',
@@ -18,7 +19,7 @@ export class PaymentListComponent implements OnInit {
   private userKey = 'USER';
   payments: PaymentData[] = [];
   error: any;
-  size: number = 30;
+  size: number = 20;
   currentPage: number = 1;
   searchText: string = '';
   paymentId!: number;
@@ -148,7 +149,7 @@ export class PaymentListComponent implements OnInit {
   }
 
   isAdmin(): Observable<boolean> {
-    return this.accountService.isAdmin().pipe(
+    return this.accountService.hasAccessToRoles([Role.Admin]).pipe(
       map(isAdmin => {
         return isAdmin;
       })

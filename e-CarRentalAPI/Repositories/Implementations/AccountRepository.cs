@@ -23,9 +23,9 @@ namespace e_CarRentalAPI.Repositories.Implementations
             _mapper = mapper;
         }
 
-        public async Task<UserDTO> GetUserAsync(string email)
+        public async Task<UserDTO> GetUserAsync(string userId)
         {
-            var currentUser = await _userManager.FindByEmailAsync(email);
+            var currentUser = await _userManager.FindByIdAsync(userId);
 
             if (currentUser == null)
             {

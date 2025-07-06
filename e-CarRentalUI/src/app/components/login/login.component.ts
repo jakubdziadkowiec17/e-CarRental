@@ -30,11 +30,7 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
       };
-      this.accountService.login(loginData).pipe(
-        switchMap(() => {
-          return this.accountService.getCurrentUser(loginData.email);
-        })
-      ).subscribe(
+      this.accountService.login(loginData).subscribe(
         () => {
           this.router.navigate(['/']);
         },

@@ -13,3 +13,7 @@
 .email-container {
     background-color: #ededed;
 }
+
+p {
+    margin-bottom: 0.5rem;
+}

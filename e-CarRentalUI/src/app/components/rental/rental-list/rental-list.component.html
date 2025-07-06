@@ -1,6 +1,8 @@
 <div>
     <h2 class="text-center mb-4">{{'MAIN.RENTALS' | translate}}</h2>
-    <button type="button" (click)="setEmptyFields()" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-success"><i class="bi bi-plus-lg"></i></button>
+    <div class="text-end">
+        <button type="button" (click)="setEmptyFields()" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-success"><i class="bi bi-plus-lg"></i></button>
+    </div>
     <div class="d-flex justify-content-between mt-3 mb-3">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="{{'FORM.SEARCHBYID' | translate}}" aria-label="Search text" [(ngModel)]="searchText">
@@ -8,7 +10,8 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <div class="table-responsive">
+            <div *ngIf="rentals.length === 0" class="text-center">{{'LIST.NO_DATA_TO_DISPLAY' | translate}}</div>
+            <div *ngIf="rentals.length > 0" class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
@@ -46,13 +49,13 @@
                     </tbody>
                 </table>
             </div>
-            <nav>
+            <nav *ngIf="rentals.length > 0">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" [class.disabled]="currentPage == 1">
                         <a class="page-link" (click)="previousPage()"><i class="bi bi-chevron-left"></i></a>
                     </li>
-                    <li class="page-item" *ngFor="let page of totalPages()" [class.active]="currentPage == page">
-                        <a class="page-link" (click)="setCurrentPage(page)">{{page}}</a>
+                    <li class="page-item active">
+                        <span class="page-link cursor-default">{{currentPage}} {{'LIST.FROM' | translate}} {{totalPages().length}}</span>
                     </li>
                     <li class="page-item" [class.disabled]="currentPage == totalPages().length">
                         <a class="page-link" (click)="nextPage()"><i class="bi bi-chevron-right"></i></a>
@@ -74,6 +77,7 @@
                 <form>
                     <div class="form-group">
                         <label for="carId" class="form-label">{{ 'RENTALFORM.FULLCARNAME' | translate }}</label>
+                        <app-required></app-required>
                         <select class="form-select" id="carId" name="carId" [(ngModel)]="rentalData.carId" required>
                             <ng-container *ngFor="let car of cars">
                                 <option [value]="car.id">{{ car.fullName }} - {{ car.yearOfProduction }}</option>
@@ -82,6 +86,7 @@
                     </div>
                     <div class="form-group">
                         <label for="clientId" class="form-label">{{ 'RENTALFORM.FULLCLIENTNAME' | translate }}</label>
+                        <app-required></app-required>
                         <select class="form-select" id="clientId" name="clientId" [(ngModel)]="rentalData.clientId" required>
                             <ng-container *ngFor="let client of clients">
                                 <option [value]="client.id">{{ client.fullName }} - {{ client.pesel }}</option>
@@ -90,10 +95,12 @@
                     </div>
                     <div class="form-group">
                         <label for="hours" class="form-label">{{ 'RENTALFORM.HOURS' | translate }}</label>
+                        <app-required></app-required>
                         <input type="number" class="form-control" id="hours" name="hours" [(ngModel)]="rentalData.hours" required>
                     </div>
                     <div class="form-group">
                         <label for="startDate" class="form-label">{{ 'RENTALFORM.STARTDATE' | translate }}</label>
+                        <app-required></app-required>
                         <input type="datetime-local" class="form-control" id="startDate" name="startDate" [(ngModel)]="rentalData.startDate" required>
                     </div>
                     <div class="form-group">
@@ -103,7 +110,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="createRental()" data-bs-dismiss="modal" class="btn btn-success w-100">{{ 'FORM.CREATE' | translate }}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-1"></i>{{ 'FORM.CANCEL' | translate }}</button>
+                <button type="button" (click)="createRental()" data-bs-dismiss="modal" class="btn btn-success"><i class="bi bi-check-lg me-1"></i>{{ 'FORM.SAVE' | translate }}</button>
             </div>
         </div>
     </div>
@@ -120,24 +128,29 @@
                 <form>
                     <div class="form-group">
                         <label for="rentalId" class="form-label">{{ 'PAYMENTFORM.RENTALID' | translate }}</label>
+                        <app-required></app-required>
                         <input type="number" class="form-control readonly-container" id="rentalId" name="rentalId" [(ngModel)]="paymentData.rentalId" readonly>
                     </div>
                     <div class="form-group">
                         <label for="description" class="form-label">{{ 'PAYMENTFORM.DESCRIPTION' | translate }}</label>
+                        <app-required></app-required>
                         <input type="text" class="form-control" id="description" name="description" [(ngModel)]="paymentData.description" required>
                     </div>
                     <div class="form-group">
                         <label for="sum" class="form-label">{{ 'PAYMENTFORM.SUM' | translate }} [zł]</label>
+                        <app-required></app-required>
                         <input type="number" class="form-control" id="sum" name="sum" [(ngModel)]="paymentData.sum" required>
                     </div>
                     <div class="form-group">
                         <label for="paymentDate" class="form-label">{{ 'PAYMENTFORM.PAYMENTDATE' | translate }}</label>
+                        <app-required></app-required>
                         <input type="datetime-local" class="form-control" id="paymentDate" name="paymentDate" [(ngModel)]="paymentData.paymentDate" required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="createPayment()" data-bs-dismiss="modal" class="btn btn-success w-100">{{ 'FORM.CREATE' | translate }}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-1"></i>{{ 'FORM.CANCEL' | translate }}</button>
+                <button type="button" (click)="createPayment()" data-bs-dismiss="modal" class="btn btn-success"><i class="bi bi-check-lg me-1"></i>{{ 'FORM.SAVE' | translate }}</button>
             </div>
         </div>
     </div>
@@ -154,11 +167,14 @@
                 <form>
                     <div class="form-group">
                         <label for="id" class="form-label">{{ 'RENTALFORM.ID' | translate }}</label>
+                        <app-required></app-required>
                         <input type="number" class="form-control readonly-container" id="id" name="id" [(ngModel)]="rentalData.id" readonly>
                     </div>
                     <div class="form-group">
                         <label for="carId" class="form-label">{{ 'RENTALFORM.FULLCARNAME' | translate }}</label>
-                        <select class="form-select" id="carId" name="carId" [(ngModel)]="rentalData.carId" required>
+                        <app-required></app-required>
+                        <input *ngIf="!isCarIdInCars()" type="text" class="form-control readonly-container" id="fullNameWithYear" name="fullNameWithYear" [(ngModel)]="rentalData.fullNameWithYear" readonly>
+                        <select *ngIf="isCarIdInCars()" class="form-select" id="carId" name="carId" [(ngModel)]="rentalData.carId" required>
                             <ng-container *ngFor="let car of cars">
                                 <option [value]="car.id">{{ car.fullName }} - {{ car.yearOfProduction }}</option>
                             </ng-container>
@@ -166,6 +182,7 @@
                     </div>
                     <div class="form-group">
                         <label for="clientId" class="form-label">{{ 'RENTALFORM.FULLCLIENTNAME' | translate }}</label>
+                        <app-required></app-required>
                         <select class="form-select" id="clientId" name="clientId" [(ngModel)]="rentalData.clientId" required>
                             <ng-container *ngFor="let client of clients">
                                 <option [value]="client.id">{{ client.fullName }} - {{ client.pesel }}</option>
@@ -174,10 +191,12 @@
                     </div>
                     <div class="form-group">
                         <label for="hours" class="form-label">{{ 'RENTALFORM.HOURS' | translate }}</label>
+                        <app-required></app-required>
                         <input type="number" class="form-control" id="hours" name="hours" [(ngModel)]="rentalData.hours" required>
                     </div>
                     <div class="form-group">
                         <label for="startDate" class="form-label">{{ 'RENTALFORM.STARTDATE' | translate }}</label>
+                        <app-required></app-required>
                         <input type="datetime-local" class="form-control" id="startDate" name="startDate" [(ngModel)]="rentalData.startDate" required>
                     </div>
                     <div class="form-group">
@@ -186,12 +205,14 @@
                     </div>
                     <div class="form-group">
                         <label for="createdDate" class="form-label">{{ 'RENTALFORM.CREATEDDATE' | translate }}</label>
+                        <app-required></app-required>
                         <input type="datetime-local" class="form-control readonly-container" id="createdDate" name="createdDate" [(ngModel)]="rentalData.createdDate" readonly>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" (click)="updateRental()" data-bs-dismiss="modal" class="btn btn-success w-100">{{ 'FORM.UPDATE' | translate }}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-1"></i>{{ 'FORM.CANCEL' | translate }}</button>
+                <button type="button" (click)="updateRental()" data-bs-dismiss="modal" class="btn btn-success"><i class="bi bi-check-lg me-1"></i>{{ 'FORM.SAVE' | translate }}</button>
             </div>
         </div>
     </div>
@@ -207,8 +228,8 @@
             </div>
             <div class="modal-body">{{ 'FORM.DELETECLIENT' | translate }}</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'FORM.CANCEL' | translate }}</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteRental()">{{ 'FORM.DELETE' | translate }}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-1"></i>{{ 'FORM.CANCEL' | translate }}</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteRental()"><i class="bi bi-trash3 me-1"></i>{{ 'FORM.DELETE' | translate }}</button>
             </div>
         </div>
     </div>

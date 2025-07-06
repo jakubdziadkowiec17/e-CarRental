@@ -35,6 +35,10 @@ body {
   cursor: pointer;
 }
 
+.cursor-default {
+  cursor: default !important;
+}
+
 .green-info {
   color:green;
 }
@@ -48,21 +52,21 @@ body {
 }
 
 .btn-info {
-  margin: 2px;
+  margin: 3px;
 }
 
 .btn-warning {
-  margin: 2px;
+  margin: 3px;
 }
 
 .btn-secondary {
-  margin: 2px;
+  margin: 3px;
 }
 
 .btn-primary {
-  margin: 2px;
+  margin: 3px;
 }
 
 .btn-danger {
-  margin: 2px;
+  margin: 3px;
 }

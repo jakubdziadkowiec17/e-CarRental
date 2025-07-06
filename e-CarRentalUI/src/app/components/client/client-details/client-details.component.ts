@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './client-details.component.css'
 })
 export class ClientDetailsComponent implements OnInit {
-  size: number = 5;
+  size: number = 10;
   currentPage: number = 1;
   clientId!: number;
   clientData!: ClientData;

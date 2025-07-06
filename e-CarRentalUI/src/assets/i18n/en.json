@@ -18,6 +18,10 @@
         "POLISH": "Polski",
         "ENGLISH": "English"
     },
+    "LIST":{
+        "FROM": "from",
+        "NO_DATA_TO_DISPLAY": "No data to display"
+    },
     "HOME":{
         "CHARTSLABEL": "Number of monthly rentals from the last year",
         "CHARTSLABELFORY": "Number of monthly rentals",
@@ -37,11 +41,10 @@
         }
     },
     "FORM":{
-        "CREATE": "Create",
-        "UPDATE": "Update",
         "CANCEL": "Cancel",
         "CLOSE": "Close",
         "DELETE": "Delete",
+        "SAVE": "Save",
         "CONFIRMDELETE": "Confirm delete",
         "RESETPASSWORD": "Reset password",
         "RESET": "Reset",
@@ -209,10 +212,10 @@
                 "PAYMENT": "The payment has been successfully created"
             },
             "UPDATED": {
-                "RENTAL": "The rental has been successfully updated",
-                "CAR": "The car has been successfully updated",
-                "CLIENT": "The client has been successfully updated",
-                "EMPLOYEE": "The employee has been successfully updated"
+                "RENTAL": "The rental has been successfully edited",
+                "CAR": "The car has been successfully edited",
+                "CLIENT": "The client has been successfully edited",
+                "EMPLOYEE": "The employee has been successfully edited"
             },
             "DELETED": {
                 "RENTAL": "The rental has been successfully deleted",
@@ -222,7 +225,7 @@
                 "PAYMENT": "The payment has been successfully deleted"
             },
             "SETTINGS": {
-                "UPDATED": "Your user details have been successfully updated",
+                "UPDATED": "Your user details have been successfully edited",
                 "RESETPASSWORD": "Your password has been successfully reset"
             },
             "RESETPASSWORD": {

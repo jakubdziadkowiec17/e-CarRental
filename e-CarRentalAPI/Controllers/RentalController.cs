@@ -1,4 +1,5 @@
 using AutoMapper;
+using e_CarRentalAPI.Constants;
 using e_CarRentalAPI.Models.DTOs;
 using e_CarRentalAPI.Models.Entities;
 using e_CarRentalAPI.Repositories.Implementations;
@@ -33,6 +34,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("count")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<int>> GetRentalCount()
         {
             try
@@ -47,6 +49,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("monthCount")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<List<ChartDTO>>> GetRentalMonthCount()
         {
             try
@@ -60,8 +63,8 @@ namespace e_CarRentalAPI.Controllers
             }
         }
 
-
         [HttpGet]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<List<RentalDTO>>> GetRentals()
         {
             try
@@ -96,11 +99,11 @@ namespace e_CarRentalAPI.Controllers
                     {
                         Id = rental.Id,
                         ClientId = client.Id,
-                        ClientFullName = client.FirstName + client.SecondName + client.LastName + " - " + client.PESEL,
+                        ClientFullName = client.FirstName + " " + client.SecondName + " " + client.LastName,
                         UserId = user.Id,
                         UserFullName = user.FirstName + user.SecondName + user.LastName,
                         CarId = car.Id,
-                        FullNameWithYear = car.Brand + car.Model + " - " + car.YearOfProduction,
+                        FullNameWithYear = car.Brand + " " + car.Model + " - " + car.YearOfProduction,
                         Hours = rental.Hours,
                         CreatedDate = rental.CreatedDate,
                         StartDate = rental.StartDate,
@@ -121,6 +124,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("getRentalsByClientId/{clientId}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<List<RentalDTO>>> GetRentalsByClientId(int clientId)
         {
             try
@@ -155,11 +159,11 @@ namespace e_CarRentalAPI.Controllers
                     {
                         Id = rental.Id,
                         ClientId = client.Id,
-                        ClientFullName = client.FirstName + client.SecondName + client.LastName + " - " + client.PESEL,
+                        ClientFullName = client.FirstName + " " + client.SecondName + " " + client.LastName,
                         UserId = user.Id,
                         UserFullName = user.FirstName + user.SecondName + user.LastName,
                         CarId = car.Id,
-                        FullNameWithYear = car.Brand + car.Model + " - " + car.YearOfProduction,
+                        FullNameWithYear = car.Brand + " " + car.Model + " - " + car.YearOfProduction,
                         Hours = rental.Hours,
                         CreatedDate = rental.CreatedDate,
                         StartDate = rental.StartDate,
@@ -180,6 +184,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("getRentalsByCarId/{carId}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<List<RentalDTO>>> GetRentalsByCarId(int carId)
         {
             try
@@ -214,11 +219,11 @@ namespace e_CarRentalAPI.Controllers
                     {
                         Id = rental.Id,
                         ClientId = client.Id,
-                        ClientFullName = client.FirstName + client.SecondName + client.LastName + " - " + client.PESEL,
+                        ClientFullName = client.FirstName + " " + client.SecondName + " " + client.LastName,
                         UserId = user.Id,
                         UserFullName = user.FirstName + user.SecondName + user.LastName,
                         CarId = car.Id,
-                        FullNameWithYear = car.Brand + car.Model + " - " + car.YearOfProduction,
+                        FullNameWithYear = car.Brand + " " + car.Model + " - " + car.YearOfProduction,
                         Hours = rental.Hours,
                         CreatedDate = rental.CreatedDate,
                         StartDate = rental.StartDate,
@@ -239,6 +244,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<RentalDTO>> GetRental(int id)
         {
             try
@@ -270,11 +276,11 @@ namespace e_CarRentalAPI.Controllers
                     {
                         Id = rental.Id,
                         ClientId = client.Id,
-                        ClientFullName = client.FirstName + client.SecondName + client.LastName + " - " + client.PESEL,
+                        ClientFullName = client.FirstName + " " + client.SecondName + " " + client.LastName,
                         UserId = user.Id,
                         UserFullName = user.FirstName + user.SecondName + user.LastName,
                         CarId = car.Id,
-                        FullNameWithYear = car.Brand + car.Model + " - " + car.YearOfProduction,
+                        FullNameWithYear = car.Brand + " " + car.Model + " - " + car.YearOfProduction,
                         Hours = rental.Hours,
                         CreatedDate = rental.CreatedDate,
                         StartDate = rental.StartDate,
@@ -294,6 +300,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> AddRental(RentalDTO rentalDTO)
         {
             try
@@ -326,6 +333,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> UpdateRental(int id, RentalDTO rentalDTO)
         {
             try
@@ -354,6 +362,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> DeleteRental(int id)
         {
             try

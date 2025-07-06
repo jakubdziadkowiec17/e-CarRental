@@ -1,4 +1,5 @@
 using AutoMapper;
+using e_CarRentalAPI.Constants;
 using e_CarRentalAPI.Models.DTOs;
 using e_CarRentalAPI.Models.Entities;
 using e_CarRentalAPI.Repositories.Implementations;
@@ -29,6 +30,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("count")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<int>> GetEmployeeCount()
         {
             try
@@ -43,6 +45,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<EmployeeListDTO>> GetEmployees()
         {
             try
@@ -57,6 +60,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<UserDTO>> GetEmployee(string id)
         {
             try
@@ -77,6 +81,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> RegisterEmployee([FromBody] RegisterDTO model)
         {
             try
@@ -96,6 +101,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> UpdateEmployee(string id, UserDTO userDTO)
         {
             try
@@ -118,6 +124,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> DeleteEmployee(string id)
         {
             try
@@ -137,8 +144,8 @@ namespace e_CarRentalAPI.Controllers
             }
         }
 
-        [Authorize]
         [HttpPut("resetPasswordForEmployee")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> resetPasswordForEmployee(string id, [FromBody] ResetPasswordAdminDTO model)
         {
             var currentUser = await _userManager.FindByIdAsync(id);

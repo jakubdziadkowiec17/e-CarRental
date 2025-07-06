@@ -1,4 +1,5 @@
 using AutoMapper;
+using e_CarRentalAPI.Constants;
 using e_CarRentalAPI.Models.DTOs;
 using e_CarRentalAPI.Models.Entities;
 using e_CarRentalAPI.Repositories.Interfaces;
@@ -23,6 +24,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("count")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<int>> GetClientCount()
         {
             try
@@ -37,6 +39,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<ClientListDTO>> GetClients()
         {
             try
@@ -51,6 +54,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<ClientDTO>> GetClient(int id)
         {
             try
@@ -71,6 +75,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> AddClient(ClientDTO clientDTO)
         {
             try
@@ -92,6 +97,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> UpdateClient(int id, ClientDTO clientDTO)
         {
             try
@@ -114,6 +120,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> DeleteClient(int id)
         {
             try

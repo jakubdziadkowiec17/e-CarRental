@@ -21,6 +21,7 @@
             <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
                 <div class="form-group">
                     <label for="firstName">{{'USERFORM.FIRSTNAME' | translate}}</label>
+                    <app-required></app-required>
                     <input type="text" class="form-control" id="firstName" formControlName="firstName" required>
                 </div>
                 <div class="form-group">
@@ -29,50 +30,60 @@
                 </div>
                 <div class="form-group">
                     <label for="lastName">{{'USERFORM.LASTNAME' | translate}}</label>
+                    <app-required></app-required>
                     <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
                 </div>
                 <div class="form-group">
                     <label for="email">{{ 'USERFORM.EMAIL' | translate }}</label>
+                    <app-required></app-required>
                     <input type="text" class="form-control email-container" id="email" formControlName="email" readonly>
                 </div>
                 <div class="form-group">
                     <label for="pesel">{{'USERFORM.PESEL' | translate}}</label>
+                    <app-required></app-required>
                     <input type="text" class="form-control" id="pesel" formControlName="pesel" required>
                 </div>
                 <div class="form-group">
                     <label for="dateOfBirth">{{'USERFORM.DATEOFBIRTH' | translate}}</label>
+                    <app-required></app-required>
                     <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth" required>
                 </div>
                 <div class="form-group">
                     <label for="address">{{'USERFORM.ADDRESS' | translate}}</label>
+                    <app-required></app-required>
                     <input type="text" class="form-control" id="address" formControlName="address" required>
                 </div>
                 <div class="form-group">
                     <label for="areaCode">{{'USERFORM.AREACODE' | translate}}</label>
+                    <app-required></app-required>
                     <input type="text" class="form-control" id="areaCode" formControlName="areaCode" required>
                 </div>
                 <div class="form-group">
                     <label for="phoneNumber">{{'USERFORM.PHONENUMBER' | translate}}</label>
+                    <app-required></app-required>
                     <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" required>
                 </div>
-                <button type="submit" class="btn btn-success w-100 mt-4">{{'FORM.UPDATE' | translate}}</button>
+                <button type="submit" class="btn btn-success w-100 mt-4"><i class="bi bi-check-lg me-1"></i>{{'FORM.SAVE' | translate}}</button>
             </form>
         </div>
         <div class="tab-pane fade" id="reset-password" role="tabpanel" aria-labelledby="reset-password-tab">
             <form [formGroup]="resetPasswordForm" (ngSubmit)="resetPassword()">
                 <div class="form-group">
                     <label for="oldPassword">{{'SETTINGSFORM.OLDPASSWORD' | translate}}</label>
+                    <app-required></app-required>
                     <input type="password" class="form-control" id="oldPassword" formControlName="oldPassword" required>
                 </div>
                 <div class="form-group">
                     <label for="password">{{'SETTINGSFORM.NEWPASSWORD' | translate}}</label>
+                    <app-required></app-required>
                     <input type="password" class="form-control" id="password" formControlName="password" required>
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword">{{'SETTINGSFORM.CONFIRMNEWPASSWORD' | translate}}</label>
+                    <app-required></app-required>
                     <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required>
                 </div>
-                <button type="submit" class="btn btn-success w-100 mt-4">{{'FORM.RESET' | translate}}</button>
+                <button type="submit" class="btn btn-success w-100 mt-4"><i class="bi bi-arrow-clockwise me-1"></i>{{'FORM.RESET' | translate}}</button>
             </form>
         </div>
         <div class="tab-pane fade" id="change-language" role="tabpanel" aria-labelledby="change-language-tab">

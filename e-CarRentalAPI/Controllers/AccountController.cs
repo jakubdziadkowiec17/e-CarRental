@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using e_CarRentalAPI.Repositories.Interfaces;
+using e_CarRentalAPI.Constants;
 
 namespace e_CarRentalAPI.Controllers
 {
@@ -27,11 +28,11 @@ namespace e_CarRentalAPI.Controllers
             _roleManager = roleManager;
         }
 
-        [Authorize]
         [HttpGet("getCurrentUser")]
-        public async Task<IActionResult> GetCurrentUser(string email)
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
+        public async Task<IActionResult> GetCurrentUser(string userId)
         {
-            var user = await _accountRepository.GetUserAsync(email);
+            var user = await _accountRepository.GetUserAsync(userId);
 
             if (user == null)
             {
@@ -39,35 +40,6 @@ namespace e_CarRentalAPI.Controllers
             }
 
             return Ok(user);
-        }
-
-        [Authorize]
-        [HttpGet("isAdmin")]
-        public async Task<ActionResult<bool>> isAdmin(string email)
-        {
-            var adminRole = "Admin";
-            var user = await _userManager.FindByEmailAsync(email);
-
-            if (user == null)
-            {
-                return false;
-            }
-
-            if (await _roleManager.RoleExistsAsync(adminRole))
-            {
-                var isAdmin = await _userManager.IsInRoleAsync(user, adminRole);
-
-                if (isAdmin)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            return false;
         }
 
         [AllowAnonymous]
@@ -78,18 +50,33 @@ namespace e_CarRentalAPI.Controllers
 
             if (result)
             {
+                var currentUser = await _userManager.FindByEmailAsync(model.Email);
+                if (currentUser is null)
+                {
+                    return BadRequest();
+                }
+
+                string[] roles = [Role.Admin, Role.Employee];
+                var userRoles = await _userManager.GetRolesAsync(currentUser);
+                var role = userRoles.FirstOrDefault();
+                if (role is null || !roles.Contains(role))
+                {
+                    return BadRequest();
+                }
+
                 var authClaims = new List<Claim>
-                    {
-                        new(ClaimTypes.Email, model.Email),
-                        new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    };
+                {
+                    new(ClaimTypes.NameIdentifier, currentUser.Id),
+                    new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+                authClaims.Add(new Claim(ClaimTypes.Role, role));
 
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
                 var token = new JwtSecurityToken(
                     issuer: _configuration["JWT:ValidIssuer"],
                     audience: _configuration["JWT:ValidAudience"],
-                    expires: DateTime.Now.AddHours(10),
+                    expires: DateTime.Now.AddHours(24),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256));
 
@@ -101,19 +88,20 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPost("logout")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> Logout()
         {
             await _accountRepository.LogoutAsync();
             return Ok();
         }
 
-        [Authorize]
         [HttpPut("editProfile")]
-        public async Task<IActionResult> EditProfile(string email, [FromBody] UserDTO model)
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
+        public async Task<IActionResult> EditProfile(string userId, [FromBody] UserDTO model)
         {
-            var currentUser = await _userManager.FindByEmailAsync(email);
+            var currentUser = await _userManager.FindByIdAsync(userId);
 
-            if (currentUser != null || email == model.Email)
+            if (currentUser != null)
             {
                 currentUser.FirstName = model.FirstName;
                 currentUser.SecondName = model.SecondName;
@@ -136,11 +124,11 @@ namespace e_CarRentalAPI.Controllers
             return BadRequest();
         }
 
-        [Authorize]
         [HttpPut("resetPassword")]
-        public async Task<IActionResult> ResetPassword(string email, [FromBody] ResetPasswordDTO model)
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
+        public async Task<IActionResult> ResetPassword(string userId, [FromBody] ResetPasswordDTO model)
         {
-            var currentUser = await _userManager.FindByEmailAsync(email);
+            var currentUser = await _userManager.FindByIdAsync(userId);
             if (currentUser != null)
             {
                 var isOldPasswordCorrect = await _userManager.CheckPasswordAsync(currentUser, model.OldPassword);

@@ -1,7 +1,5 @@
-﻿using e_CarRentalAPI.Database;
-using e_CarRentalAPI.Models.Entities;
+﻿using e_CarRentalAPI.Models.Entities;
 using e_CarRentalAPI.Models.Entities.CarDetails;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +24,12 @@ namespace e_CarRentalAPI.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<BodyType>().Property(a => a.Id).ValueGeneratedNever();
+            modelBuilder.Entity<Color>().Property(a => a.Id).ValueGeneratedNever();
+            modelBuilder.Entity<Fuel>().Property(a => a.Id).ValueGeneratedNever();
+            modelBuilder.Entity<Gearbox>().Property(a => a.Id).ValueGeneratedNever();
+            modelBuilder.Entity<Propulsion>().Property(a => a.Id).ValueGeneratedNever();
 
             modelBuilder.Entity<Payment>()
                 .HasOne(a => a.Rental)

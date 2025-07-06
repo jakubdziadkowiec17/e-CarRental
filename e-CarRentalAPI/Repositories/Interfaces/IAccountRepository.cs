@@ -5,7 +5,7 @@ namespace e_CarRentalAPI.Repositories.Interfaces
 {
     public interface IAccountRepository
     {
-        Task<UserDTO> GetUserAsync(string email);
+        Task<UserDTO> GetUserAsync(string userId);
         Task<bool> LoginAsync(LoginDTO model);
         Task<bool> RegisterEmployeeAsync(RegisterDTO model);
         Task LogoutAsync();

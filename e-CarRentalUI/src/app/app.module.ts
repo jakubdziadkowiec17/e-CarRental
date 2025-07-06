@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { RequiredComponent } from './components/required/required.component';
 import { HomeComponent } from './components/home/home.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './helpers/token.interceptor';
@@ -35,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     LoginComponent,
+    RequiredComponent,
     HomeComponent,
     NavbarComponent,
     FooterComponent,

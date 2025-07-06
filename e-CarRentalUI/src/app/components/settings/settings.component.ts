@@ -81,7 +81,7 @@ export class SettingsComponent {
         phoneNumber: this.editProfileForm.value.phoneNumber
       };
 
-      this.accountService.editProfile(this.currentUser.email, userData).subscribe(
+      this.accountService.editProfile(userData).subscribe(
         () => {
           this.router.navigate(['/']);
           this.toastr.success(this.translate.instant('ALERT.SUCCESS.SETTINGS.UPDATED'));
@@ -100,7 +100,7 @@ export class SettingsComponent {
         password: this.resetPasswordForm.value.password,
         confirmPassword: this.resetPasswordForm.value.confirmPassword
       };
-      this.accountService.resetPassword(this.accountService.getCurrentUserEmail(), resetPasswordData).subscribe(
+      this.accountService.resetPassword(resetPasswordData).subscribe(
         () => {
           this.router.navigate(['/']);
           this.toastr.success(this.translate.instant('ALERT.SUCCESS.SETTINGS.RESETPASSWORD'));

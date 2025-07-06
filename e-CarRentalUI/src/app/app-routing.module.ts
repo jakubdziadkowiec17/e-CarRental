@@ -13,6 +13,7 @@ import { RentalListComponent } from './components/rental/rental-list/rental-list
 import { RentalDetailsComponent } from './components/rental/rental-details/rental-details.component';
 import { PaymentListComponent } from './components/payment/payment-list/payment-list.component';
 import { AdminGuard } from './helpers/admin.guard';
+import { LoginGuard } from './helpers/login.guard';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'rentals',
@@ -57,7 +59,7 @@ const routes: Routes = [
   {
     path: 'employees',
     component: EmployeeListComponent,
-    canActivate: [AdminGuard]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'payments',

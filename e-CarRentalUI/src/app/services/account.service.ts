@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 import { ResetPasswordData } from '../interfaces/reset-password-data';
 import { UserData } from '../interfaces/user-data';
 import { CookieService } from 'ngx-cookie-service';
+import { Claims } from '../Constants/Claims';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
   private tokenKey = 'ASP.NET TOKEN';
-  private userKey = 'USER';
   id!: number;
   email!: string;
 
@@ -33,64 +34,19 @@ export class AccountService {
     );
   }
 
-  public isAdmin(): Observable<boolean> {
-    if (typeof localStorage === 'undefined') {
-        return of(false);
-    }
-    const currentUser = localStorage.getItem(this.userKey);
-    if (!currentUser) {
-      throw new Error('Empty User');
-    }
-    const user = JSON.parse(currentUser);
-    if (!user.email) {
-      throw new Error('Empty E-mail');
-    }
-    return this.http.get<boolean>(`${environment.apiUrl}/Account/isAdmin?email=${user.email}`);
-}
-
-getCurrentUser(email: string): Observable<UserData> {
-  return this.http.get<UserData>(`${environment.apiUrl}/Account/getCurrentUser?email=${email}`)
-    .pipe(
-      tap(user => {
-        localStorage.setItem(this.userKey, JSON.stringify({ id: user.id, email: user.email }));
-      })
-    );
-}
+  getCurrentUser(email: string): Observable<UserData> {
+    return this.http.get<UserData>(`${environment.apiUrl}/Account/getCurrentUser?email=${email}`);
+  }
 
   getCurrentUserSettings(): Observable<UserData> {
-    const currentUser = localStorage.getItem(this.userKey);
-    if (!currentUser) {
-      throw new Error('Empty User');
-    }
-    const { id, email } = JSON.parse(currentUser);
-    if (!email) {
-      throw new Error('Empty E-mail');
-    }
-    return this.http.get<UserData>(`${environment.apiUrl}/Account/getCurrentUser?email=${email}`)
-      .pipe(
-        tap(user => {
-          // Zapisz tylko id i email do localStorage
-          localStorage.setItem(this.userKey, JSON.stringify({ id, email }));
-        })
-      );
+    const userId = this.getUserId();
+    return this.http.get<UserData>(`${environment.apiUrl}/Account/getCurrentUser?userId=${userId}`);
   }
 
-  public getCurrentUserEmail(): string {
-    const currentUser = localStorage.getItem(this.userKey);
-    if (!currentUser) {
-      throw new Error('Empty User');
-    }
-    const user = JSON.parse(currentUser);
-    const email = user.email;
-    if (!email) {
-      throw new Error('Empty E-mail');
-    }
-    return email;
-  }
-
-  editProfile(email: string, data: UserData): Observable<any> {
+  editProfile(data: UserData): Observable<any> {
+    const userId = this.getUserId();
     return this.http.put<any>(
-      `${environment.apiUrl}/Account/editProfile?email=${email}`, data, { responseType: 'text' as 'json' }
+      `${environment.apiUrl}/Account/editProfile?userId=${userId}`, data, { responseType: 'text' as 'json' }
     ).pipe(
       tap(() => {
         this.getCurrentUser(data.email).subscribe();
@@ -100,9 +56,10 @@ getCurrentUser(email: string): Observable<UserData> {
     );
   }
 
-  resetPassword(email: string, data: ResetPasswordData): Observable<any> {
+  resetPassword(data: ResetPasswordData): Observable<any> {
+    const userId = this.getUserId();
     return this.http.put<any>(
-      `${environment.apiUrl}/Account/resetPassword?email=${email}`, data, { responseType: 'text' as 'json' }
+      `${environment.apiUrl}/Account/resetPassword?userId=${userId}`, data, { responseType: 'text' as 'json' }
     ).pipe(
       tap(response => {
         console.log(response);
@@ -112,8 +69,52 @@ getCurrentUser(email: string): Observable<UserData> {
 
   public logout(): void {
     this.cookieService.delete(this.tokenKey);
-    localStorage.removeItem(this.userKey);
     this.router.navigate(['/login']);
+  }
+
+  public getToken(): string | null {
+    return this.cookieService.get(this.tokenKey);
+  }
+
+  public hasAccessToRoles(roles: string[]): Observable<boolean> {
+    const accessToken = this.getToken();
+
+    if (!accessToken) {
+      return of(false);
+    }
+
+    try {
+      const decodedToken = jwtDecode<any>(accessToken);
+      const rolesFromJWT = decodedToken[Claims.Roles];
+
+      if (!rolesFromJWT) {
+        return of(false);
+      }
+
+      const userRoles = Array.isArray(rolesFromJWT) ? rolesFromJWT : [rolesFromJWT];
+      const hasAccess = roles.some(role => userRoles.includes(role));
+
+      return of(hasAccess);
+    } 
+    catch (error) {
+      return of(false);
+    }
+  }
+
+  public getUserId(): string | null {
+    const accessToken = this.getToken();
+
+    if (!accessToken) {
+      return null;
+    }
+
+    try {
+      const decodedToken = jwtDecode<any>(accessToken);
+      return decodedToken[Claims.UserId];
+    } 
+    catch (error) {
+      return null;
+    }
   }
 
   public isLoggedIn(): boolean {
@@ -122,9 +123,5 @@ getCurrentUser(email: string): Observable<UserData> {
       return token != null && token.length > 0;
     }
     return false;
-  }
-
-  public getToken(): string | null {
-    return this.cookieService.get(this.tokenKey);
   }
 }

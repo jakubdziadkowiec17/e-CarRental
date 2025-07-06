@@ -1,4 +1,5 @@
 using AutoMapper;
+using e_CarRentalAPI.Constants;
 using e_CarRentalAPI.Models.DTOs;
 using e_CarRentalAPI.Models.Entities;
 using e_CarRentalAPI.Repositories.Implementations;
@@ -24,6 +25,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("count")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<int>> GetCarCount()
         {
             try
@@ -38,6 +40,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<CarListDTO>> GetCars()
         {
             try
@@ -52,6 +55,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<CarDTO>> GetCar(int id)
         {
             try
@@ -72,6 +76,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> AddCar(CarDTO carDTO)
         {
             try
@@ -93,6 +98,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> UpdateCar(int id, CarDTO carDTO)
         {
             try
@@ -115,6 +121,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
             try

@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ClientListComponent implements OnInit {
   clients: ClientListData[] = [];
   error: any;
-  size: number = 30;
+  size: number = 20;
   currentPage: number = 1;
   searchText: string = '';
   clientId!: number;

@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class EmployeeListComponent implements OnInit {
   employees: EmployeeListData[] = [];
   error: any;
-  size: number = 30;
+  size: number = 20;
   currentPage: number = 1;
   searchText: string = '';
   employeeId!: string;

@@ -336,10 +336,7 @@ namespace e_CarRentalAPI.Database.Migrations
             modelBuilder.Entity("e_CarRentalAPI.Models.Entities.CarDetails.BodyType", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -353,10 +350,7 @@ namespace e_CarRentalAPI.Database.Migrations
             modelBuilder.Entity("e_CarRentalAPI.Models.Entities.CarDetails.Color", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -370,10 +364,7 @@ namespace e_CarRentalAPI.Database.Migrations
             modelBuilder.Entity("e_CarRentalAPI.Models.Entities.CarDetails.Fuel", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -387,10 +378,7 @@ namespace e_CarRentalAPI.Database.Migrations
             modelBuilder.Entity("e_CarRentalAPI.Models.Entities.CarDetails.Gearbox", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -404,10 +392,7 @@ namespace e_CarRentalAPI.Database.Migrations
             modelBuilder.Entity("e_CarRentalAPI.Models.Entities.CarDetails.Propulsion", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()

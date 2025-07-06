@@ -18,6 +18,10 @@
         "POLISH": "Polski",
         "ENGLISH": "English"
     },
+    "LIST":{
+        "FROM": "z",
+        "NO_DATA_TO_DISPLAY": "Brak danych do wyświetlenia"
+    },
     "HOME":{
         "CHARTSLABEL": "Liczba miesięcznych wypożyczeń z ostatniego roku",
         "CHARTSLABELFORY": "Liczba miesięcznych wypożyczeń",
@@ -37,11 +41,10 @@
         }
     },
     "FORM":{
-        "CREATE": "Utwórz",
-        "UPDATE": "Aktualizuj",
         "CANCEL": "Anuluj",
         "CLOSE": "Zamknij",
         "DELETE": "Usuń",
+        "SAVE": "Zapisz",
         "CONFIRMDELETE": "Potwierdź usunięcie",
         "CREATERENTAL": "Utwórz wypożyczenie",
         "CREATECAR": "Utwórz samochód",
@@ -209,10 +212,10 @@
                 "PAYMENT": "Płatność została pomyślnie utworzona"
             },
             "UPDATED": {
-                "RENTAL": "Wypożyczenie zostało pomyślnie zaktualizowane",
-                "CAR": "Samochód został pomyślnie zaktualizowany",
-                "CLIENT": "Klient został pomyślnie zaktualizowany",
-                "EMPLOYEE": "Pracownik został pomyślnie zaktualizowany"
+                "RENTAL": "Wypożyczenie zostało pomyślnie edytowane",
+                "CAR": "Samochód został pomyślnie edytowany",
+                "CLIENT": "Klient został pomyślnie edytowany",
+                "EMPLOYEE": "Pracownik został pomyślnie edytowany"
             },
             "DELETED": {
                 "RENTAL": "Wypożyczenie zostało pomyślnie usunięte",
@@ -222,7 +225,7 @@
                 "PAYMENT": "Płatność została pomyślnie usunięta"
             },
             "SETTINGS": {
-                "UPDATED": "Twoje dane użytkownika zostały pomyślnie zaktualizowane",
+                "UPDATED": "Twoje dane użytkownika zostały pomyślnie edytowane",
                 "RESETPASSWORD": "Twoje hasło zostało pomyślnie zresetowane"
             },
             "RESETPASSWORD": {

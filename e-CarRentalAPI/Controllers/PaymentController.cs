@@ -1,4 +1,5 @@
 using AutoMapper;
+using e_CarRentalAPI.Constants;
 using e_CarRentalAPI.Models.DTOs;
 using e_CarRentalAPI.Models.Entities;
 using e_CarRentalAPI.Repositories.Implementations;
@@ -27,6 +28,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("count")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<int>> GetPaymentCount()
         {
             try
@@ -41,6 +43,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<List<PaymentDTO>>> GetPayments()
         {
             try
@@ -75,6 +78,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("getPaymentsByRentalId/{rentalId}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<List<PaymentDTO>>> GetPaymentsByRentalId(int rentalId)
         {
             try
@@ -109,6 +113,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<ActionResult<PaymentDTO>> GetPayment(int id)
         {
             try
@@ -140,6 +145,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{Role.Admin},{Role.Employee}")]
         public async Task<IActionResult> AddPayment(PaymentDTO paymentDTO)
         {
             try
@@ -171,6 +177,7 @@ namespace e_CarRentalAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> DeletePayment(int id)
         {
             try

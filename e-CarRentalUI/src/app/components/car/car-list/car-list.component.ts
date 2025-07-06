@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CarListComponent implements OnInit {
   cars: CarListData[] = [];
   error: any;
-  size: number = 30;
+  size: number = 20;
   currentPage: number = 1;
   searchText: string = '';
   carId!: number;

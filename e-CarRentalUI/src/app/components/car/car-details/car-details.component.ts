@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './car-details.component.css'
 })
 export class CarDetailsComponent implements OnInit {
-  size: number = 15;
+  size: number = 10;
   currentPage: number = 1;
   carId!: number;
   carData!: CarData;

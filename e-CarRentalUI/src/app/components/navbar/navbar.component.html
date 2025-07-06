@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" [ngClass]="{'current': isActive('')}" (click)="handleNavigate('')">{{'MAIN.DASHBOARD' | translate}}</a>
+          <a class="nav-link active" [ngClass]="{'current': isHomeActive('')}" (click)="handleNavigate('')">{{'MAIN.DASHBOARD' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" [ngClass]="{'current': isActive('rentals')}" (click)="handleNavigate('rentals')">{{'MAIN.RENTALS' | translate}}</a>
+          <a class="nav-link active" [ngClass]="{'current': isActive('rentals') || isActive('rental')}" (click)="handleNavigate('rentals')">{{'MAIN.RENTALS' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" [ngClass]="{'current': isActive('cars')}" (click)="handleNavigate('cars')">{{'MAIN.CARS' | translate}}</a>
+          <a class="nav-link active" [ngClass]="{'current': isActive('cars') || isActive('car')}" (click)="handleNavigate('cars')">{{'MAIN.CARS' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" [ngClass]="{'current': isActive('clients')}" (click)="handleNavigate('clients')">{{'MAIN.CLIENTS' | translate}}</a>
+          <a class="nav-link active" [ngClass]="{'current': isActive('clients') || isActive('client')}" (click)="handleNavigate('clients')">{{'MAIN.CLIENTS' | translate}}</a>
         </li>
         <li *ngIf="(isAdmin$ | async)" class="nav-item">
           <a class="nav-link active" [ngClass]="{'current': isActive('employees')}" (click)="handleNavigate('employees')">{{'MAIN.EMPLOYEES' | translate}}</a>

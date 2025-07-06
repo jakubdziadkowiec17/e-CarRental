@@ -12,4 +12,5 @@
 
 .readonly-container {
     background-color: #ededed;
+    cursor: default;
 }
