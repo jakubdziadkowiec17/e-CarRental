@@ -1,0 +1,182 @@
+<div class="container">
+    <h2 class="text-center mt-4 mb-4">{{'MAIN.CLIENTS' | translate}}</h2>
+    <button type="button" (click)="setEmptyFields()" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-success"><i class="bi bi-plus-lg"></i></button>
+    <div class="d-flex justify-content-between mt-3 mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="{{'FORM.SEARCHBYFULLNAME' | translate}}" aria-label="Search text" [(ngModel)]="searchText">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{{'CLIENTFORM.FULLNAME' | translate}}</th>
+                            <th>{{'CLIENTFORM.EMAIL' | translate}}</th>
+                            <th>{{'CLIENTFORM.PESEL' | translate}}</th>
+                            <th>{{'CLIENTFORM.DATEOFBIRTH' | translate}}</th>
+                            <th>{{'CLIENTFORM.ADDRESS' | translate}}</th>
+                            <th>{{'CLIENTFORM.FULLPHONENUMBER' | translate}}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of search() | slice:(currentPage-1)*size:currentPage*size">
+                            <td>{{ client.fullName }}</td>
+                            <td>{{ client.email }}</td>
+                            <td>{{ client.pesel }}</td>
+                            <td>{{ client.dateOfBirth | date:'dd.MM.yyyy'}}</td>
+                            <td>{{ client.address }}</td>
+                            <td>{{ client.fullPhoneNumber }}</td>
+                            <td>
+                                <button type="button" class="btn btn-info" (click)="navigateToClientDetails(client.id)"><i class="bi bi-info-lg"></i></button>
+                                <button type="button" (click)="setClientId(client.id)" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" (click)="setClientId(client.id)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" [class.disabled]="currentPage == 1">
+                        <a class="page-link" (click)="previousPage()"><i class="bi bi-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item" *ngFor="let page of totalPages()" [class.active]="currentPage == page">
+                        <a class="page-link" (click)="setCurrentPage(page)">{{page}}</a>
+                    </li>
+                    <li class="page-item" [class.disabled]="currentPage == totalPages().length">
+                        <a class="page-link" (click)="nextPage()"><i class="bi bi-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createModalLabel">{{ 'FORM.CREATECLIENT' | translate }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">{{ 'CLIENTFORM.FIRSTNAME' | translate }}</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="clientData.firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="secondName" class="form-label">{{ 'CLIENTFORM.SECONDNAME' | translate }}</label>
+                        <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="clientData.secondName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">{{ 'CLIENTFORM.LASTNAME' | translate }}</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="clientData.lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">{{ 'CLIENTFORM.EMAIL' | translate }}</label>
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="clientData.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pesel" class="form-label">{{ 'CLIENTFORM.PESEL' | translate }}</label>
+                        <input type="text" class="form-control" id="pesel" name="pesel" [(ngModel)]="clientData.pesel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfBirth" class="form-label">{{ 'CLIENTFORM.DATEOFBIRTH' | translate }}</label>
+                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="clientData.dateOfBirth" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="form-label">{{ 'CLIENTFORM.ADDRESS' | translate }}</label>
+                        <input type="text" class="form-control" id="address" name="address" [(ngModel)]="clientData.address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="areaCode" class="form-label">{{ 'CLIENTFORM.AREACODE' | translate }}</label>
+                        <input type="text" class="form-control" id="areaCode" name="areaCode" [(ngModel)]="clientData.areaCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber" class="form-label">{{ 'CLIENTFORM.PHONENUMBER' | translate }}</label>
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="clientData.phoneNumber" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="createClient()" data-bs-dismiss="modal" class="btn btn-success w-100">{{ 'FORM.CREATE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel">{{ 'FORM.EDITCLIENT' | translate }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">{{ 'CLIENTFORM.FIRSTNAME' | translate }}</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="clientData.firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="secondName" class="form-label">{{ 'CLIENTFORM.SECONDNAME' | translate }}</label>
+                        <input type="text" class="form-control" id="secondName" name="secondName" [(ngModel)]="clientData.secondName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">{{ 'CLIENTFORM.LASTNAME' | translate }}</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="clientData.lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">{{ 'CLIENTFORM.EMAIL' | translate }}</label>
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="clientData.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pesel" class="form-label">{{ 'CLIENTFORM.PESEL' | translate }}</label>
+                        <input type="text" class="form-control" id="pesel" name="pesel" [(ngModel)]="clientData.pesel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfBirth" class="form-label">{{ 'CLIENTFORM.DATEOFBIRTH' | translate }}</label>
+                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="clientData.dateOfBirth" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="form-label">{{ 'CLIENTFORM.ADDRESS' | translate }}</label>
+                        <input type="text" class="form-control" id="address" name="address" [(ngModel)]="clientData.address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="areaCode" class="form-label">{{ 'CLIENTFORM.AREACODE' | translate }}</label>
+                        <input type="text" class="form-control" id="areaCode" name="areaCode" [(ngModel)]="clientData.areaCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber" class="form-label">{{ 'CLIENTFORM.PHONENUMBER' | translate }}</label>
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="clientData.phoneNumber" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="updateClient()" data-bs-dismiss="modal" class="btn btn-success w-100">{{ 'FORM.UPDATE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModalLabel">{{ 'FORM.CONFIRMDELETE' | translate }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">{{ 'FORM.DELETECLIENT' | translate }}</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'FORM.CANCEL' | translate }}</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteClient()">{{ 'FORM.DELETE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

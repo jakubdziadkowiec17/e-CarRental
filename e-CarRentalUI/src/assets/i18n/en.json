@@ -1,0 +1,268 @@
+{
+    "MAIN":{
+        "DASHBOARD": "Dashboard",
+        "RENTALS": "Rentals",
+        "CARS": "Cars",
+        "EMPLOYEES": "Employees",
+        "CLIENTS": "Clients",
+        "PAYMENTS": "Payments",
+        "ACCOUNT": "Account",
+        "SETTINGS": "Settings",
+        "LOGOUT": "Log out"
+    },
+    "LOGINFORM":{
+        "SIGNIN": "Sign in",
+        "LOGIN": "Log in"
+    },
+    "LANGUAGE":{
+        "POLISH": "Polski",
+        "ENGLISH": "English"
+    },
+    "HOME":{
+        "CHARTSLABEL": "Number of monthly rentals from the last year",
+        "CHARTSLABELFORY": "Number of monthly rentals",
+        "CHARTMONTH":{
+            "1": "January",
+            "2": "February",
+            "3": "March",
+            "4": "April",
+            "5": "May",
+            "6": "June",
+            "7": "July",
+            "8": "August",
+            "9": "September",
+            "10": "October",
+            "11": "November",
+            "12": "December"
+        }
+    },
+    "FORM":{
+        "CREATE": "Create",
+        "UPDATE": "Update",
+        "CANCEL": "Cancel",
+        "CLOSE": "Close",
+        "DELETE": "Delete",
+        "CONFIRMDELETE": "Confirm delete",
+        "RESETPASSWORD": "Reset password",
+        "RESET": "Reset",
+        "CREATERENTAL": "Create rental",
+        "CREATECAR": "Create car",
+        "CREATECLIENT": "Create client",
+        "CREATEEMPLOYEE": "Create employee",
+        "CREATEPAYMENT": "Create payment",
+        "DETAILSRENTAL": "Rental details",
+        "DETAILSCAR": "Car details",
+        "DETAILSCLIENT": "Client details",
+        "DETAILSEMPLOYEE": "Employee details",
+        "DETAILSPAYMENT": "Payment details",
+        "DELETERENTAL": "Are you sure you want to delete this rental?",
+        "DELETECAR": "Are you sure you want to delete this car?",
+        "DELETEEMPLOYEE": "Are you sure you want to delete this employee?",
+        "DELETECLIENT": "Are you sure you want to delete this client?",
+        "DELETEPAYMENT": "Are you sure you want to delete this payment?",
+        "SEARCHBYFULLNAME": "Search by full name",
+        "SEARCHBYCARNAME": "Search by car name",
+        "SEARCHBYID": "Search by id",
+        "EDITRENTAL": "Edit rental",
+        "EDITCAR": "Edit car",
+        "EDITCLIENT": "Edit client",
+        "EDITEMPLOYEE": "Edit employee",
+        "EDITPAYMENT": "Edit payment",
+        "RELATEDRENTALS": "Related rentals",
+        "RELATEDPAYMENTS": "Related payments"
+    },
+    "SETTINGSFORM":{
+        "EDITPROFILE": "Edit profile",
+        "CHANGELANGUAGE": "Change language",
+        "OLDPASSWORD": "Old password",
+        "NEWPASSWORD": "New password",
+        "CONFIRMNEWPASSWORD": "Confirm new password",
+        "SELECTLANGUAGE": "Select language"
+    },
+    "USERFORM":{
+        "FIRSTNAME": "First name",
+        "SECONDNAME": "Second name",
+        "LASTNAME": "Last name",
+        "FULLNAME": "Full name",
+        "EMAIL": "E-mail",
+        "PESEL": "PESEL",
+        "DATEOFBIRTH": "Date of birth",
+        "ADDRESS": "Address",
+        "AREACODE": "Area code",
+        "PHONENUMBER": "Phone number",
+        "PASSWORD": "Password",
+        "CONFIRMPASSWORD": "Confirm password",
+        "NEWPASSWORD": "New password",
+        "CONFIRMNEWPASSWORD": "Confirm new password",
+        "FULLPHONENUMBER": "Full phone number"
+    },
+    "CLIENTFORM":{
+        "FIRSTNAME": "First name",
+        "SECONDNAME": "Second name",
+        "LASTNAME": "Last name",
+        "FULLNAME": "Full name",
+        "EMAIL": "E-mail",
+        "PESEL": "PESEL",
+        "DATEOFBIRTH": "Date of birth",
+        "ADDRESS": "Address",
+        "AREACODE": "Area code",
+        "PHONENUMBER": "Phone number",
+        "FULLPHONENUMBER": "Full phone number"
+    },
+    "CARFORM":{
+        "FULLNAME": "Full name",
+        "BODYTYPE": "Body type",
+        "YEAROFPRODUCTION": "Year of production",
+        "VIN": "VIN",
+        "REGISTRATION": "Registration",
+        "PRICE": "Price",
+        "PRICEPERHOUR": "Price per hour",
+        "BRAND":"Brand",
+        "MODEL":"Model",
+        "FUEL":"Fuel",
+        "COLOR":"Color",
+        "MILEAGE":"Mileage",
+        "GEARBOX":"Gearbox",
+        "PROPULSION":"Propulsion",
+        "CAPACITY":"Capacity",
+        "POWER":"Power",
+        "NUMBEROFDOORS":"Number of doors",
+        "NUMBEROFSEATS":"Number of seats",
+        "RIGHTSIDESTEERINGWHEEL":"Right side steering wheel",
+        "YES":"Yes",
+        "NO":"No",
+        "SELECTBODYTYPE":"Select body type",
+        "SELECTCOLOR":"Select color",
+        "SELECTFUEL":"Select fuel",
+        "SELECTGEARBOX":"Select gearbox",
+        "SELECTPROPULSION":"Select propulsion",
+        "BODYTYPEOPTION": {
+            "1":"Sedan",
+            "2":"Cabriolet",
+            "3":"SUV",
+            "4":"Station wagon",
+            "5":"Compact",
+            "6":"Small car"
+        },
+        "COLOROPTION": {
+            "1":"White",
+            "2":"Black",
+            "3":"Blue",
+            "4":"Green",
+            "5":"Yellow",
+            "6":"Orange",
+            "7":"Purple",
+            "8":"Brown",
+            "9":"Gray",
+            "10":"Pink",
+            "11":"Red",
+            "12":"Gold",
+            "13":"Silver",
+            "14":"Beige",
+            "15":"Navy blue",
+            "16":"Lime"
+        },
+        "FUELOPTION": {
+            "1":"Hybrid",
+            "2":"Gas",
+            "3":"Diesel",
+            "4":"Electric",
+            "5":"Hydrogen"
+        },
+        "GEARBOXOPTION": {
+            "1":"Automatic",
+            "2":"Manual"
+        },
+        "PROPULSIONOPTION": {
+            "1":"Front wheels",
+            "2":"Rear wheels",
+            "3":"4x4"
+        }
+    },
+    "RENTALFORM":{
+        "ID": "Id",
+        "FULLCLIENTNAME": "Client",
+        "CREATEDBYUSER": "Created by",
+        "FULLCARNAME": "Car",
+        "HOURS": "Hours",
+        "CREATEDDATE": "Created date",
+        "STARTDATE": "Start date",
+        "ENDDATE": "End date",
+        "FULLYPAID": "Fully paid",
+        "PAYMENTSTATUS": "Payment status"
+    },
+    "PAYMENTFORM":{
+        "ID": "Id",
+        "RENTALID": "Rental id",
+        "DESCRIPTION": "Description",
+        "SUM": "Sum",
+        "PAYMENTDATE": "Payment date",
+        "CREATEDBYUSER": "Created by"
+    },
+    "ALERT": {
+        "SUCCESS": {
+            "CREATED": {
+                "RENTAL": "The rental has been successfully created",
+                "CAR": "The car has been successfully created",
+                "CLIENT": "The client has been successfully created",
+                "EMPLOYEE": "The employee has been successfully created",
+                "PAYMENT": "The payment has been successfully created"
+            },
+            "UPDATED": {
+                "RENTAL": "The rental has been successfully updated",
+                "CAR": "The car has been successfully updated",
+                "CLIENT": "The client has been successfully updated",
+                "EMPLOYEE": "The employee has been successfully updated"
+            },
+            "DELETED": {
+                "RENTAL": "The rental has been successfully deleted",
+                "CAR": "The car has been successfully deleted",
+                "CLIENT": "The client has been successfully deleted",
+                "EMPLOYEE": "The employee has been successfully deleted",
+                "PAYMENT": "The payment has been successfully deleted"
+            },
+            "SETTINGS": {
+                "UPDATED": "Your user details have been successfully updated",
+                "RESETPASSWORD": "Your password has been successfully reset"
+            },
+            "RESETPASSWORD": {
+                "EMPLOYEE": "The employee's password has been successfully reset"
+            }
+        },
+        "ERROR": {
+            "CREATED": {
+                "RENTAL": "An error occurred while creating the rental",
+                "CAR": "An error occurred while creating the car",
+                "CLIENT": "An error occurred while creating the client",
+                "EMPLOYEE": "An error occurred while creating the employee",
+                "PAYMENT": "An error occurred while creating the payment"
+            },
+            "UPDATED": {
+                "RENTAL": "An error occurred while updating the rental",
+                "CAR": "An error occurred while updating the car",
+                "CLIENT": "An error occurred while updating the client",
+                "EMPLOYEE": "An error occurred while updating the employee"
+            },
+            "DELETED": {
+                "RENTAL": "An error occurred while deleting the rental",
+                "CAR": "An error occurred while deleting the car",
+                "CLIENT": "An error occurred while deleting the client",
+                "EMPLOYEE": "An error occurred while deleting the employee",
+                "PAYMENT": "An error occurred while deleting the payment"
+            },
+            "SETTINGS": {
+                "UPDATED": "An error occurred while updating your user details",
+                "RESETPASSWORD": "An error occurred while resetting your password"
+            },
+            "RESETPASSWORD": {
+                "EMPLOYEE": "An error occurred while resetting the employee's password"
+            },
+            "DOWNLOADING": {
+                "DATA": "An error occurred while downloading data"
+            },
+            "LOG": {
+                "IN": "An error occurred while logging in"
+            }
+        }
+    }
+}

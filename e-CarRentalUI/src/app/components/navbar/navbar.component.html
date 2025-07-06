@@ -1,0 +1,39 @@
+<nav class="navbar navbar-dark navbar-expand-lg border-bottom box-shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" (click)="handleNavigate('')">e-CarRental</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" [ngClass]="{'current': isActive('')}" (click)="handleNavigate('')">{{'MAIN.DASHBOARD' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" [ngClass]="{'current': isActive('rentals')}" (click)="handleNavigate('rentals')">{{'MAIN.RENTALS' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" [ngClass]="{'current': isActive('cars')}" (click)="handleNavigate('cars')">{{'MAIN.CARS' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" [ngClass]="{'current': isActive('clients')}" (click)="handleNavigate('clients')">{{'MAIN.CLIENTS' | translate}}</a>
+        </li>
+        <li *ngIf="(isAdmin$ | async)" class="nav-item">
+          <a class="nav-link active" [ngClass]="{'current': isActive('employees')}" (click)="handleNavigate('employees')">{{'MAIN.EMPLOYEES' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" [ngClass]="{'current': isActive('payments')}" (click)="handleNavigate('payments')">{{'MAIN.PAYMENTS' | translate}}</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" [ngClass]="{'current': isActive('settings')}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{'MAIN.ACCOUNT' | translate}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="handleNavigate('settings')">{{'MAIN.SETTINGS' | translate}}</a></li>
+            <li><a class="dropdown-item" (click)="logout()">{{'MAIN.LOGOUT' | translate}}</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

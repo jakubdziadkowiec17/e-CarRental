@@ -1,0 +1,17 @@
+.fields-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.list-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.details-container {
+    min-height: 87vh;
+}

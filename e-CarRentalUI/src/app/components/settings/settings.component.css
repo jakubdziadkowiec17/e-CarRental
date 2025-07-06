@@ -1,0 +1,31 @@
+.fields-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.settings-container {
+    min-height: 84vh;
+}
+
+.nav-tabs, .nav-link {
+    color: #132239;
+}
+
+.nav-link.active {
+    color: #ffffff;
+    background-color: #132239;
+}
+
+.options {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.language-select {
+    margin-bottom: 1.5rem;
+}
+
+.email-container {
+    background-color: #ededed;
+}

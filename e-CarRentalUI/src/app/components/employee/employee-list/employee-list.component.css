@@ -1,0 +1,20 @@
+.form-control {
+    border-color: rgba(0, 0, 0, 0.175);
+}
+
+.form-label {
+    margin-bottom: 0;
+}
+
+.container {
+    min-height: 85vh;
+    margin-bottom: 3rem;
+}
+
+.pagination {
+    margin-bottom: 0;
+}
+
+.email-container {
+    background-color: #ededed;
+}

@@ -1,0 +1,37 @@
+.navbar{
+    padding: 0.7rem 1.5rem;
+    background-color: #132239;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #cdcdcd;
+}
+
+.navbar-nav .nav-item:not(:last-child) {
+    margin-right: 0.5rem;
+}
+
+a {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 0;
+    --bs-dropdown-bg: #132239;
+    --bs-dropdown-link-color: #ffffff;
+    --bs-dropdown-link-hover-bg: #132239;
+    --bs-dropdown-link-hover-color: #cdcdcd;
+    --bs-dropdown-link-active-bg: #132239;
+    --bs-dropdown-border-color: #132239;
+    --bs-dropdown-item-padding-x: 0.85rem;
+    --bs-dropdown-item-padding-y: 0.3rem;
+}
+
+.current {
+    color: #52CDD6 !important;
+}

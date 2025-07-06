@@ -1,0 +1,300 @@
+<div class="container">
+    <h2 class="text-center mt-4 mb-4">{{'MAIN.CARS' | translate}}</h2>
+    <button type="button" (click)="setEmptyFields()" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-success"><i class="bi bi-plus-lg"></i></button>
+    <div class="d-flex justify-content-between mt-3 mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="{{'FORM.SEARCHBYCARNAME' | translate}}" aria-label="Search text" [(ngModel)]="searchText">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{{'CARFORM.FULLNAME' | translate}}</th>
+                            <th>{{'CARFORM.YEAROFPRODUCTION' | translate}}</th>
+                            <th>{{'CARFORM.BODYTYPE' | translate}}</th>
+                            <th>{{'CARFORM.VIN' | translate}}</th>
+                            <th>{{'CARFORM.REGISTRATION' | translate}}</th>
+                            <th>{{'CARFORM.PRICE' | translate}}</th>
+                            <th>{{'CARFORM.PRICEPERHOUR' | translate}}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let car of search() | slice:(currentPage-1)*size:currentPage*size">
+                            <td>{{ car.fullName }}</td>
+                            <td>{{ car.yearOfProduction }}</td>
+                            <td>{{'CARFORM.BODYTYPEOPTION.' + car.bodyTypeId | translate}}</td>
+                            <td>{{ car.vin }}</td>
+                            <td>{{ car.registration }}</td>
+                            <td>{{ car.price }} zł</td>
+                            <td>{{ car.pricePerHour }} zł</td>
+                            <td>
+                                <button type="button" class="btn btn-info" (click)="navigateToCarDetails(car.id)"><i class="bi bi-info-lg"></i></button>
+                                <button type="button" (click)="setCarId(car.id)" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" (click)="setCarId(car.id)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" [class.disabled]="currentPage == 1">
+                        <a class="page-link" (click)="previousPage()"><i class="bi bi-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item" *ngFor="let page of totalPages()" [class.active]="currentPage == page">
+                        <a class="page-link" (click)="setCurrentPage(page)">{{page}}</a>
+                    </li>
+                    <li class="page-item" [class.disabled]="currentPage == totalPages().length">
+                        <a class="page-link" (click)="nextPage()"><i class="bi bi-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createModalLabel">{{ 'FORM.CREATECAR' | translate }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="brand" class="form-label">{{ 'CARFORM.BRAND' | translate }}</label>
+                        <input type="text" class="form-control" id="brand" name="brand" [(ngModel)]="carData.brand" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="model" class="form-label">{{ 'CARFORM.MODEL' | translate }}</label>
+                        <input type="text" class="form-control" id="model" name="model" [(ngModel)]="carData.model" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bodyTypeId" class="form-label">{{ 'CARFORM.BODYTYPE' | translate }}</label>
+                        <select class="form-select" id="bodyTypeId" name="bodyTypeId" [(ngModel)]="carData.bodyTypeId" required>
+                            <ng-container *ngFor="let option of bodyTypeRange">
+                                <option [value]="option">{{ 'CARFORM.BODYTYPEOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearOfProduction" class="form-label">{{ 'CARFORM.YEAROFPRODUCTION' | translate }}</label>
+                        <input type="number" class="form-control" id="yearOfProduction" name="yearOfProduction" [(ngModel)]="carData.yearOfProduction" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuelId" class="form-label">{{ 'CARFORM.FUEL' | translate }}</label>
+                        <select class="form-select" id="fuelId" name="fuelId" [(ngModel)]="carData.fuelId" required>
+                            <ng-container *ngFor="let option of fuelRange">
+                                <option [value]="option">{{ 'CARFORM.FUELOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vin" class="form-label">{{ 'CARFORM.VIN' | translate }}</label>
+                        <input type="text" class="form-control" id="vin" name="vin" [(ngModel)]="carData.vin">
+                    </div>
+                    <div class="form-group">
+                        <label for="colorId" class="form-label">{{ 'CARFORM.COLOR' | translate }}</label>
+                        <select class="form-select" id="colorId" name="colorId" [(ngModel)]="carData.colorId" required>
+                            <ng-container *ngFor="let option of colorRange">
+                                <option [value]="option">{{ 'CARFORM.COLOROPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mileage" class="form-label">{{ 'CARFORM.MILEAGE' | translate }}</label>
+                        <input type="number" class="form-control" id="mileage" name="mileage" [(ngModel)]="carData.mileage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gearboxId" class="form-label">{{ 'CARFORM.GEARBOX' | translate }}</label>
+                        <select class="form-select" id="gearboxId" name="gearboxId" [(ngModel)]="carData.gearboxId" required>
+                            <ng-container *ngFor="let option of gearboxRange">
+                                <option [value]="option">{{ 'CARFORM.GEARBOXOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="propulsionId" class="form-label">{{ 'CARFORM.PROPULSION' | translate }}</label>
+                        <select class="form-select" id="propulsionId" name="propulsionId" [(ngModel)]="carData.propulsionId" required>
+                            <ng-container *ngFor="let option of propulsionRange">
+                                <option [value]="option">{{ 'CARFORM.PROPULSIONOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity" class="form-label">{{ 'CARFORM.CAPACITY' | translate }}</label>
+                        <input type="number" class="form-control" id="capacity" name="capacity" [(ngModel)]="carData.capacity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="power" class="form-label">{{ 'CARFORM.POWER' | translate }}</label>
+                        <input type="number" class="form-control" id="power" name="power" [(ngModel)]="carData.power" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfDoors" class="form-label">{{ 'CARFORM.NUMBEROFDOORS' | translate }}</label>
+                        <input type="number" class="form-control" id="numberOfDoors" name="numberOfDoors" [(ngModel)]="carData.numberOfDoors" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfSeats" class="form-label">{{ 'CARFORM.NUMBEROFSEATS' | translate }}</label>
+                        <input type="number" class="form-control" id="numberOfSeats" name="numberOfSeats" [(ngModel)]="carData.numberOfSeats" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rightSideSteeringWheel" class="form-label">{{ 'CARFORM.RIGHTSIDESTEERINGWHEEL' | translate }}</label>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" id="rightSideSteeringWheel" name="rightSideSteeringWheel" [(ngModel)]="carData.rightSideSteeringWheel" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registration" class="form-label">{{ 'CARFORM.REGISTRATION' | translate }}</label>
+                        <input type="text" class="form-control" id="registration" name="registration" [(ngModel)]="carData.registration">
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="form-label">{{ 'CARFORM.PRICE' | translate }} [zł]</label>
+                        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="carData.price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pricePerHour" class="form-label">{{ 'CARFORM.PRICEPERHOUR' | translate }} [zł]</label>
+                        <input type="number" class="form-control" id="pricePerHour" name="pricePerHour" [(ngModel)]="carData.pricePerHour" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="createCar()" data-bs-dismiss="modal" class="btn btn-success w-100">{{ 'FORM.CREATE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel">{{ 'FORM.EDITCAR' | translate }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="brand" class="form-label">{{ 'CARFORM.BRAND' | translate }}</label>
+                        <input type="text" class="form-control" id="brand" name="brand" [(ngModel)]="carData.brand" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="model" class="form-label">{{ 'CARFORM.MODEL' | translate }}</label>
+                        <input type="text" class="form-control" id="model" name="model" [(ngModel)]="carData.model" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bodyTypeId" class="form-label">{{ 'CARFORM.BODYTYPE' | translate }}</label>
+                        <select class="form-select" id="bodyTypeId" name="bodyTypeId" [(ngModel)]="carData.bodyTypeId" required>
+                            <ng-container *ngFor="let option of bodyTypeRange">
+                                <option [value]="option">{{ 'CARFORM.BODYTYPEOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="yearOfProduction" class="form-label">{{ 'CARFORM.YEAROFPRODUCTION' | translate }}</label>
+                        <input type="number" class="form-control" id="yearOfProduction" name="yearOfProduction" [(ngModel)]="carData.yearOfProduction" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuelId" class="form-label">{{ 'CARFORM.FUEL' | translate }}</label>
+                        <select class="form-select" id="fuelId" name="fuelId" [(ngModel)]="carData.fuelId" required>
+                            <ng-container *ngFor="let option of fuelRange">
+                                <option [value]="option">{{ 'CARFORM.FUELOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vin" class="form-label">{{ 'CARFORM.VIN' | translate }}</label>
+                        <input type="text" class="form-control" id="vin" name="vin" [(ngModel)]="carData.vin">
+                    </div>
+                    <div class="form-group">
+                        <label for="colorId" class="form-label">{{ 'CARFORM.COLOR' | translate }}</label>
+                        <select class="form-select" id="colorId" name="colorId" [(ngModel)]="carData.colorId" required>
+                            <ng-container *ngFor="let option of colorRange">
+                                <option [value]="option">{{ 'CARFORM.COLOROPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mileage" class="form-label">{{ 'CARFORM.MILEAGE' | translate }}</label>
+                        <input type="number" class="form-control" id="mileage" name="mileage" [(ngModel)]="carData.mileage" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gearboxId" class="form-label">{{ 'CARFORM.GEARBOX' | translate }}</label>
+                        <select class="form-select" id="gearboxId" name="gearboxId" [(ngModel)]="carData.gearboxId" required>
+                            <ng-container *ngFor="let option of gearboxRange">
+                                <option [value]="option">{{ 'CARFORM.GEARBOXOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="propulsionId" class="form-label">{{ 'CARFORM.PROPULSION' | translate }}</label>
+                        <select class="form-select" id="propulsionId" name="propulsionId" [(ngModel)]="carData.propulsionId" required>
+                            <ng-container *ngFor="let option of propulsionRange">
+                                <option [value]="option">{{ 'CARFORM.PROPULSIONOPTION.' + option | translate }}</option>
+                            </ng-container>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity" class="form-label">{{ 'CARFORM.CAPACITY' | translate }}</label>
+                        <input type="number" class="form-control" id="capacity" name="capacity" [(ngModel)]="carData.capacity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="power" class="form-label">{{ 'CARFORM.POWER' | translate }}</label>
+                        <input type="number" class="form-control" id="power" name="power" [(ngModel)]="carData.power" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfDoors" class="form-label">{{ 'CARFORM.NUMBEROFDOORS' | translate }}</label>
+                        <input type="number" class="form-control" id="numberOfDoors" name="numberOfDoors" [(ngModel)]="carData.numberOfDoors" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfSeats" class="form-label">{{ 'CARFORM.NUMBEROFSEATS' | translate }}</label>
+                        <input type="number" class="form-control" id="numberOfSeats" name="numberOfSeats" [(ngModel)]="carData.numberOfSeats" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rightSideSteeringWheel" class="form-label">{{ 'CARFORM.RIGHTSIDESTEERINGWHEEL' | translate }}</label>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" id="rightSideSteeringWheel" name="rightSideSteeringWheel" [(ngModel)]="carData.rightSideSteeringWheel" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registration" class="form-label">{{ 'CARFORM.REGISTRATION' | translate }}</label>
+                        <input type="text" class="form-control" id="registration" name="registration" [(ngModel)]="carData.registration">
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="form-label">{{ 'CARFORM.PRICE' | translate }} [zł]</label>
+                        <input type="number" class="form-control" id="price" name="price" [(ngModel)]="carData.price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pricePerHour" class="form-label">{{ 'CARFORM.PRICEPERHOUR' | translate }} [zł]</label>
+                        <input type="number" class="form-control" id="pricePerHour" name="pricePerHour" [(ngModel)]="carData.pricePerHour" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="updateCar()" data-bs-dismiss="modal" class="btn btn-success w-100">{{ 'FORM.UPDATE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModalLabel">{{ 'FORM.CONFIRMDELETE' | translate }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">{{ 'FORM.DELETECAR' | translate }}</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'FORM.CANCEL' | translate }}</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteCar()">{{ 'FORM.DELETE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</div>

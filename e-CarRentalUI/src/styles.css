@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+body {
+    background-color: #efeeea;
+  }
+
+.active > .page-link {
+  background-color: #132239;
+  border-color: #132239;
+}
+
+.pagination {
+  --bs-pagination-color: #132239;
+  --bs-pagination-hover-color: #132239;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.link-p {
+  color: #1d2378;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.green-info {
+  color:green;
+}
+
+.red-info {
+  color: red;
+}
+
+.page-link {
+  cursor: pointer;
+}
+
+.btn-info {
+  margin-right: 4px;
+}
+
+.btn-warning {
+  margin-right: 4px;
+}
+
+.btn-secondary {
+  margin-right: 4px;
+}
+
+.btn-primary {
+  margin-right: 4px;
+}

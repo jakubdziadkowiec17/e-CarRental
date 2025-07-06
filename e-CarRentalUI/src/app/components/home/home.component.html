@@ -1,0 +1,68 @@
+<div class="dashboard-container">
+  <h2 class="text-center mt-4 mb-4">{{'MAIN.DASHBOARD' | translate}}</h2>
+  <div class="row justify-content-center flex-wrap">
+    <div class="col-6 col-sm-4 col-md-4 col-lg-2">
+      <a (click)="handleNavigate('/rentals')"><div class="card text-center">
+        <div class="card-body">
+          <h1 class="card-title">{{ rentalCount }}</h1>
+          <h5 class="card-text">{{'MAIN.RENTALS' | translate}}</h5>
+        </div>
+      </div></a>
+    </div>
+    <div class="col-6 col-sm-4 col-md-4 col-lg-2">
+      <a (click)="handleNavigate('/cars')"><div class="card text-center">
+        <div class="card-body">
+          <h1 class="card-title">{{ carCount }}</h1>
+          <h5 class="card-text">{{'MAIN.CARS' | translate}}</h5>
+        </div>
+      </div></a>
+    </div>
+    <div class="col-6 col-sm-4 col-md-4 col-lg-2">
+      <a (click)="handleNavigate('/clients')"><div class="card text-center">
+        <div class="card-body">
+          <h1 class="card-title">{{ clientCount }}</h1>
+          <h5 class="card-text">{{'MAIN.CLIENTS' | translate}}</h5>
+        </div>
+      </div></a>
+    </div>
+    <div *ngIf="(isAdmin$ | async)" class="col-6 col-sm-4 col-md-4 col-lg-2">
+      <a (click)="handleNavigate('/employees')"><div class="card text-center">
+        <div class="card-body">
+          <h1 class="card-title">{{ employeeCount }}</h1>
+          <h5 class="card-text">{{'MAIN.EMPLOYEES' | translate}}</h5>
+        </div>
+      </div></a>
+    </div>
+    <div class="col-6 col-sm-4 col-md-4 col-lg-2">
+      <a (click)="handleNavigate('/payments')"><div class="card text-center">
+        <div class="card-body">
+          <h1 class="card-title">{{ paymentCount }}</h1>
+          <h5 class="card-text">{{'MAIN.PAYMENTS' | translate}}</h5>
+        </div>
+      </div></a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <div class="charts-container card container-fluid d-flex align-items-center justify-content-center col-lg-9">
+      <h5>{{'HOME.CHARTSLABEL' | translate}}</h5>
+      <ngx-charts-bar-vertical
+        [results]="rentalMonthCount"
+        [yAxisLabel]="'HOME.CHARTSLABELFORY' | translate"
+        [view]="[chartsContainerWidth, 300]"
+        [animations]="true"
+        [showGridLines]="true"
+        [noBarWhenZero]="false"
+        [wrapTicks]="false"
+        [legend]="false"
+        [xAxis]="true"
+        [yAxis]="true"
+        [roundEdges]="true"
+        [showDataLabel]="false"
+        [roundDomains]="false"
+        [showYAxisLabel]="true"
+        [rotateXAxisTicks]="true"
+        [gradient]="false">
+      </ngx-charts-bar-vertical>
+    </div>
+  </div>
+</div>

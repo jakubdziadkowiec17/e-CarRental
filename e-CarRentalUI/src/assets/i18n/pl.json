@@ -1,0 +1,268 @@
+{
+    "MAIN":{
+        "DASHBOARD": "Panel",
+        "RENTALS": "Wypożyczenia",
+        "CARS": "Samochody",
+        "EMPLOYEES": "Pracownicy",
+        "CLIENTS": "Klienci",
+        "PAYMENTS": "Płatności",
+        "ACCOUNT": "Konto",
+        "SETTINGS": "Ustawienia",
+        "LOGOUT": "Wyloguj się"
+    },
+    "LOGINFORM":{
+        "SIGNIN": "Logowanie",
+        "LOGIN": "Zaloguj się"
+    },
+    "LANGUAGE":{
+        "POLISH": "Polski",
+        "ENGLISH": "English"
+    },
+    "HOME":{
+        "CHARTSLABEL": "Liczba miesięcznych wypożyczeń z ostatniego roku",
+        "CHARTSLABELFORY": "Liczba miesięcznych wypożyczeń",
+        "CHARTMONTH":{
+            "1": "Styczeń",
+            "2": "Luty",
+            "3": "Marzec",
+            "4": "Kwiecień",
+            "5": "Maj",
+            "6": "Czerwiec",
+            "7": "Lipiec",
+            "8": "Sierpień",
+            "9": "Wrzesień",
+            "10": "Październik",
+            "11": "Lisopad",
+            "12": "Grudzień"
+        }
+    },
+    "FORM":{
+        "CREATE": "Utwórz",
+        "UPDATE": "Aktualizuj",
+        "CANCEL": "Anuluj",
+        "CLOSE": "Zamknij",
+        "DELETE": "Usuń",
+        "CONFIRMDELETE": "Potwierdź usunięcie",
+        "CREATERENTAL": "Utwórz wypożyczenie",
+        "CREATECAR": "Utwórz samochód",
+        "CREATECLIENT": "Utwórz klienta",
+        "CREATEEMPLOYEE": "Utwórz pracownika",
+        "CREATEPAYMENT": "Utwórz płatność",
+        "DETAILSRENTAL": "Szczegóły wypożyczenia",
+        "DETAILSCAR": "Szczegóły samochodu",
+        "DETAILSCLIENT": "Szczegóły klienta",
+        "DETAILSEMPLOYEE": "Szczegóły pracownika",
+        "DETAILSPAYMENT": "Szczegóły płatności",
+        "RESETPASSWORD": "Zmień hasło",
+        "RESET": "Resetuj",
+        "SEARCHBYFULLNAME": "Szukaj według pełnego imienia i nazwiska",
+        "SEARCHBYCARNAME": "Szukaj według nazwy samochodu",
+        "SEARCHBYID": "Szukaj według id",
+        "DELETERENTAL": "Czy na pewno chcesz usunąć te wypożyczenie?",
+        "DELETECAR": "Czy na pewno chcesz usunąć ten samochód?",
+        "DELETEEMPLOYEE": "Czy na pewno chcesz usunąć tego pracownika?",
+        "DELETECLIENT": "Czy na pewno chcesz usunąć tego klienta?",
+        "DELETEPAYMENT": "Czy na pewno chcesz usunąć tę płatność?",
+        "EDITRENTAL": "Edytuj wypożyczenie",
+        "EDITCAR": "Edytuj samochód",
+        "EDITCLIENT": "Edytuj klienta",
+        "EDITEMPLOYEE": "Edytuj pracownika",
+        "EDITPAYMENT": "Edytuj płatność",
+        "RELATEDRENTALS": "Powiązane wypożyczenia",
+        "RELATEDPAYMENTS": "Powiązane płatności"
+    },
+    "SETTINGSFORM":{
+        "EDITPROFILE": "Edytuj profil",
+        "CHANGELANGUAGE": "Zmień język",
+        "OLDPASSWORD": "Stare hasło",
+        "NEWPASSWORD": "Nowe hasło",
+        "CONFIRMNEWPASSWORD": "Potwierdź nowe hasło",
+        "SELECTLANGUAGE": "Wybierz język"
+    },
+    "USERFORM":{
+        "FIRSTNAME": "Imię",
+        "SECONDNAME": "Drugie imię",
+        "LASTNAME": "Nazwisko",
+        "FULLNAME": "Pełne imię i nazwisko",
+        "EMAIL": "E-mail",
+        "PESEL": "PESEL",
+        "DATEOFBIRTH": "Data urodzenia",
+        "ADDRESS": "Adres",
+        "AREACODE": "Numer kierunkowy",
+        "PHONENUMBER": "Numer telefonu",
+        "PASSWORD": "Hasło",
+        "CONFIRMPASSWORD": "Potwierdź hasło",
+        "NEWPASSWORD": "Nowe hasło",
+        "CONFIRMNEWPASSWORD": "Potwierdź nowe hasło",
+        "FULLPHONENUMBER": "Pełny numer telefonu"
+    },
+    "CLIENTFORM":{
+        "FIRSTNAME": "Imię",
+        "SECONDNAME": "Drugie imię",
+        "LASTNAME": "Nazwisko",
+        "FULLNAME": "Pełne imię i nazwisko",
+        "EMAIL": "E-mail",
+        "PESEL": "PESEL",
+        "DATEOFBIRTH": "Data urodzenia",
+        "ADDRESS": "Adres",
+        "AREACODE": "Numer kierunkowy",
+        "PHONENUMBER": "Numer telefonu",
+        "FULLPHONENUMBER": "Pełny numer telefonu"
+    },
+    "CARFORM":{
+        "FULLNAME": "Pełna nazwa samochodu",
+        "BODYTYPE": "Typ nadwozia",
+        "YEAROFPRODUCTION": "Rok produkcji",
+        "VIN": "VIN",
+        "REGISTRATION": "Numer rejestracyjny",
+        "PRICE": "Cena",
+        "PRICEPERHOUR": "Cena za godzinę",
+        "BRAND":"Marka",
+        "MODEL":"Model",
+        "FUEL":"Paliwo",
+        "COLOR":"Kolor",
+        "MILEAGE":"Przebieg",
+        "GEARBOX":"Skrzynia biegów",
+        "PROPULSION":"Napęd",
+        "CAPACITY":"Pojemność",
+        "POWER":"Moc",
+        "NUMBEROFDOORS":"Liczba drzwi",
+        "NUMBEROFSEATS":"Liczba miejsc",
+        "RIGHTSIDESTEERINGWHEEL":"Kierownica po prawej stronie",
+        "YES":"Tak",
+        "NO":"Nie",
+        "SELECTBODYTYPE":"Wybierz typ nadwozia",
+        "SELECTCOLOR":"Wybierz kolor",
+        "SELECTFUEL":"Wybierz paliwo",
+        "SELECTGEARBOX":"Wybierz skrzynie biegów",
+        "SELECTPROPULSION":"Wybierz napęd",
+        "BODYTYPEOPTION": {
+            "1":"Sedan",
+            "2":"Kabriolet",
+            "3":"SUV",
+            "4":"Kombi",
+            "5":"Kompakt",
+            "6":"Małe auto"
+        },
+        "COLOROPTION": {
+            "1":"Biały",
+            "2":"Czarny",
+            "3":"Niebieski",
+            "4":"Zielony",
+            "5":"Żółty",
+            "6":"Pomarańczowy",
+            "7":"Fioletowy",
+            "8":"Brązowy",
+            "9":"Szary",
+            "10":"Różowy",
+            "11":"Czerwony",
+            "12":"Złoty",
+            "13":"Srebrny",
+            "14":"Beżowy",
+            "15":"Granatowy",
+            "16":"Limonkowy"
+        },
+        "FUELOPTION": {
+            "1":"Hybryda",
+            "2":"Benzyna",
+            "3":"Diesel",
+            "4":"Elektryczny",
+            "5":"Wodór"
+        },
+        "GEARBOXOPTION": {
+            "1":"Automatyczna",
+            "2":"Manualna"
+        },
+        "PROPULSIONOPTION": {
+            "1":"Przednie koła",
+            "2":"Tylne koła",
+            "3":"4x4"
+        }
+    },
+    "RENTALFORM":{
+        "ID": "Id",
+        "FULLCLIENTNAME": "Klient",
+        "CREATEDBYUSER": "Utworzone przez",
+        "FULLCARNAME": "Samochód",
+        "HOURS": "Godziny",
+        "CREATEDDATE": "Data utworzenia",
+        "STARTDATE": "Data rozpoczęcia",
+        "ENDDATE": "Data zakończenia",
+        "FULLYPAID": "Opłacone",
+        "PAYMENTSTATUS": "Status płatności"
+    },
+    "PAYMENTFORM":{
+        "ID": "Id",
+        "RENTALID": "Id wypożyczenia",
+        "DESCRIPTION": "Opis",
+        "SUM": "Kwota",
+        "PAYMENTDATE": "Data płatności",
+        "CREATEDBYUSER": "Utworzone przez"
+    },
+    "ALERT": {
+        "SUCCESS": {
+            "CREATED": {
+                "RENTAL": "Wypożyczenie zostało pomyślnie utworzone",
+                "CAR": "Samochód został pomyślnie utworzony",
+                "CLIENT": "Klient został pomyślnie utworzony",
+                "EMPLOYEE": "Pracownik został pomyślnie utworzony",
+                "PAYMENT": "Płatność została pomyślnie utworzona"
+            },
+            "UPDATED": {
+                "RENTAL": "Wypożyczenie zostało pomyślnie zaktualizowane",
+                "CAR": "Samochód został pomyślnie zaktualizowany",
+                "CLIENT": "Klient został pomyślnie zaktualizowany",
+                "EMPLOYEE": "Pracownik został pomyślnie zaktualizowany"
+            },
+            "DELETED": {
+                "RENTAL": "Wypożyczenie zostało pomyślnie usunięte",
+                "CAR": "Samochód został pomyślnie usunięty",
+                "CLIENT": "Klient został pomyślnie usunięty",
+                "EMPLOYEE": "Pracownik został pomyślnie usunięty",
+                "PAYMENT": "Płatność została pomyślnie usunięta"
+            },
+            "SETTINGS": {
+                "UPDATED": "Twoje dane użytkownika zostały pomyślnie zaktualizowane",
+                "RESETPASSWORD": "Twoje hasło zostało pomyślnie zresetowane"
+            },
+            "RESETPASSWORD": {
+                "EMPLOYEE": "Hasło pracownika zostało pomyślnie zresetowane"
+            }
+        },
+        "ERROR": {
+            "CREATED": {
+                "RENTAL": "Wystąpił błąd podczas tworzenia wypożyczenia",
+                "CAR": "Wystąpił błąd podczas tworzenia samochodu",
+                "CLIENT": "Wystąpił błąd podczas tworzenia klienta",
+                "EMPLOYEE": "Wystąpił błąd podczas tworzenia pracownika",
+                "PAYMENT": "Wystąpił błąd podczas tworzenia płatności"
+            },
+            "UPDATED": {
+                "RENTAL": "Wystąpił błąd podczas aktualizowania wypożyczenia",
+                "CAR": "Wystąpił błąd podczas aktualizowania samochodu",
+                "CLIENT": "Wystąpił błąd podczas aktualizowania klienta",
+                "EMPLOYEE": "Wystąpił błąd podczas aktualizowania pracownika"
+            },
+            "DELETED": {
+                "RENTAL": "Wystąpił błąd podczas usuwania wypożyczenia",
+                "CAR": "Wystąpił błąd podczas usuwania samochodu",
+                "CLIENT": "Wystąpił błąd podczas usuwania klienta",
+                "EMPLOYEE": "Wystąpił błąd podczas usuwania pracownika",
+                "PAYMENT": "Wystąpił błąd podczas usuwania płatności"
+            },
+            "SETTINGS": {
+                "UPDATED": "Wystąpił błąd podczas aktualizowania twoich danych użytkownika",
+                "RESETPASSWORD": "Wystąpił błąd podczas resetowania twojego hasła"
+            },
+            "RESETPASSWORD": {
+                "EMPLOYEE": "Wystąpił błąd podczas resetowania hasła pracownika"
+            },
+            "DOWNLOADING": {
+                "DATA": "Wystąpił błąd podczas pobierania danych"
+            },
+            "LOG": {
+                "IN": "Wystąpił błąd podczas logowania"
+            }
+        }
+    }
+}
