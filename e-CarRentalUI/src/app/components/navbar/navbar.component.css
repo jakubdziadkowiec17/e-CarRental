@@ -1,5 +1,5 @@
 .navbar{
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem 7rem;
     background-color: #132239;
 }
 
@@ -34,4 +34,9 @@ a {
 
 .current {
     color: #52CDD6 !important;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
 }

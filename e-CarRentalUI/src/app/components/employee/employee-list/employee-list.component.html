@@ -1,5 +1,5 @@
-<div class="container">
-    <h2 class="text-center mt-4 mb-4">{{'MAIN.EMPLOYEES' | translate}}</h2>
+<div>
+    <h2 class="text-center mb-4">{{'MAIN.EMPLOYEES' | translate}}</h2>
     <button type="button" (click)="setEmptyFields()" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-success"><i class="bi bi-plus-lg"></i></button>
     <div class="d-flex justify-content-between mt-3 mb-3">
         <div class="input-group">
@@ -57,7 +57,7 @@
 </div>
 
 <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog  modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="createModalLabel">{{ 'FORM.CREATEEMPLOYEE' | translate }}</h1>
@@ -119,7 +119,7 @@
 </div>
 
 <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog  modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="detailsModalLabel">{{ 'FORM.DETAILSEMPLOYEE' | translate }}</h1>
@@ -144,7 +144,7 @@
 </div>
 
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog  modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="editModalLabel">{{ 'FORM.EDITEMPLOYEE' | translate }}</h1>
@@ -198,7 +198,7 @@
 </div>
 
 <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog  modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="resetPasswordModalLabel">{{ 'FORM.RESETPASSWORD' | translate }}</h1>

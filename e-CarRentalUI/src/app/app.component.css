@@ -1,0 +1,8 @@
+.main-container {
+    flex: 1;
+    margin: 2rem 7rem;
+}
+
+.login-container {
+    flex: 1;
+}

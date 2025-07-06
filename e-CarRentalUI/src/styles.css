@@ -1,9 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'ngx-toastr/toastr';
 
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
     background-color: #efeeea;
-  }
+}
 
 .active > .page-link {
   background-color: #132239;
@@ -42,17 +48,21 @@ body {
 }
 
 .btn-info {
-  margin-right: 4px;
+  margin: 2px;
 }
 
 .btn-warning {
-  margin-right: 4px;
+  margin: 2px;
 }
 
 .btn-secondary {
-  margin-right: 4px;
+  margin: 2px;
 }
 
 .btn-primary {
-  margin-right: 4px;
+  margin: 2px;
+}
+
+.btn-danger {
+  margin: 2px;
 }

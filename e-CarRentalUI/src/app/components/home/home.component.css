@@ -7,10 +7,6 @@ h2 {
     text-align: center;
 }
 
-.dashboard-container {
-    min-height: 85vh;
-}
-
 h1 {
     font-size: 3rem;
     color: #52CDD6;
@@ -32,12 +28,13 @@ h1 {
     margin-left: 0;
 }
 
+.counter {
+    width: 20%;
+}
+
 .charts-container {
-    margin-top: 1.5rem;
-    margin-bottom: 3.5rem;
     padding-top: 1.25rem;
-    padding-bottom: 1rem;
-    width: 81.75%;
+    width: 100%;
 }
 
 .charts-container{

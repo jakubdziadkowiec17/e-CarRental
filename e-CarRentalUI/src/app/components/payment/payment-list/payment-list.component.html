@@ -1,5 +1,5 @@
-<div class="container">
-    <h2 class="text-center mt-4 mb-4">{{'MAIN.PAYMENTS' | translate}}</h2>
+<div>
+    <h2 class="text-center mb-4">{{'MAIN.PAYMENTS' | translate}}</h2>
     <div class="d-flex justify-content-between mt-3 mb-3">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="{{'FORM.SEARCHBYID' | translate}}" aria-label="Search text" [(ngModel)]="searchText">
@@ -54,7 +54,7 @@
 </div>
 
 <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog  modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="detailsModalLabel">{{ 'FORM.DETAILSPAYMENT' | translate }}</h1>

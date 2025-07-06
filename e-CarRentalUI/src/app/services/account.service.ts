@@ -117,12 +117,6 @@ getCurrentUser(email: string): Observable<UserData> {
   }
 
   public isLoggedIn(): boolean {
-    // if (typeof localStorage !== 'undefined') {
-    //   const token = localStorage.getItem(this.tokenKey);
-    //   return !!token;
-    // } else {
-    //   return false;
-    // }
     if (typeof localStorage !== 'undefined') {
       let token = this.cookieService.get(this.tokenKey);
       return token != null && token.length > 0;
@@ -131,7 +125,6 @@ getCurrentUser(email: string): Observable<UserData> {
   }
 
   public getToken(): string | null {
-    //return localStorage.getItem(this.tokenKey);
-    return this.isLoggedIn() ? this.cookieService.get(this.tokenKey) : null;
+    return this.cookieService.get(this.tokenKey);
   }
 }
