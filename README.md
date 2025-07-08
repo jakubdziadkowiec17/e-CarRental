@@ -5,26 +5,26 @@ The project is a web application designed for managing a car rental service. Its
 
 ## Technologies
 ### Frontend
-- Framework
+- Framework:
     - Angular
-- Languages
+- Languages:
     - TypeScript
     - HTML
     - CSS
-- Key Features
+- Key Features:
     - Polish and English translation
     - Toastr notifications
     - Bar charts
     - JWT in cookies
-- Application styling
+- Application styling:
     - Bootstrap
 
 ### Backend
-- Framework
+- Framework:
     - ASP.NET Core Web API
-- Language
+- Language:
     - C#
-- Key Features
+- Key Features:
     - Dependency Injection, DTO, Controller, Repository patterns
     - Authentication and authorization
     - JWT
@@ -35,7 +35,7 @@ The project is a web application designed for managing a car rental service. Its
     - Entity Framework Core
         - Migrations
 
-### Database:
+### Database system
 - Microsoft SQL Server
 
 ## Roles in the application
