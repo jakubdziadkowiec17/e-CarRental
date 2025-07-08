@@ -66,12 +66,7 @@ export class PaymentListComponent implements OnInit {
   }
 
   createPayment() {
-    const currentUser = localStorage.getItem(this.userKey);
-    if (!currentUser) {
-      throw new Error('Empty User');
-    }
-    const user = JSON.parse(currentUser);
-    this.paymentData.userId = user.id;
+    this.paymentData.userId = this.accountService.getUserId();
     this.paymentService.createPayment(this.paymentData)
       .subscribe(
         () => {

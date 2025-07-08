@@ -10,6 +10,7 @@ import { ClientService } from '../../../services/client.service';
 import { PaymentService } from '../../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { AccountService } from '../../../services/account.service';
 
 @Component({
   selector: 'app-rental-list',
@@ -29,7 +30,7 @@ export class RentalListComponent implements OnInit {
   clients: ClientListData[] = [];
   paymentData: any = {};
 
-  constructor(private router: Router, private translate: TranslateService, private toastr: ToastrService, private rentalService: RentalService, private carService: CarService, private clientService: ClientService, private paymentService: PaymentService) { }
+  constructor(private router: Router, private translate: TranslateService, private accountService: AccountService, private toastr: ToastrService, private rentalService: RentalService, private carService: CarService, private clientService: ClientService, private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.rentalService.getRentals()
@@ -117,12 +118,7 @@ export class RentalListComponent implements OnInit {
   }
 
   createRental() {
-    const currentUser = localStorage.getItem(this.userKey);
-    if (!currentUser) {
-      throw new Error('Empty User');
-    }
-    const user = JSON.parse(currentUser);
-    this.rentalData.userId = user.id;
+    this.rentalData.userId = this.accountService.getUserId();
     this.rentalService.createRental(this.rentalData)
       .subscribe(
         () => {
@@ -149,12 +145,7 @@ export class RentalListComponent implements OnInit {
   }
 
   createPayment() {
-    const currentUser = localStorage.getItem(this.userKey);
-    if (!currentUser) {
-      throw new Error('Empty User');
-    }
-    const user = JSON.parse(currentUser);
-    this.paymentData.userId = user.id;
+    this.paymentData.userId = this.accountService.getUserId();
     this.paymentService.createPayment(this.paymentData)
       .subscribe(
         () => {
