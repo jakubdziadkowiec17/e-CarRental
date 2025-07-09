@@ -1,7 +1,7 @@
 # e-CarRental
 
 ## About project
-The project is a web application designed for managing a car rental service. Its main goal is to enable efficient management of cars, rentals, customers, employees and payments. The system allows users to track rental statuses in real time, monitor car availability, and manage account settings. The application supports both Polish and English languages, providing accessibility for a wider group of users. It improves daily workflow for employees and helps administrators make strategic decisions through an intuitive and centralized system.
+The project is a web application designed for managing a car rental service. Its main goal is to enable efficient management of cars, rentals, customers, employees and payments. The system allows users to track rental statuses in real time, monitor car availability and manage account settings. The application supports both Polish and English languages, providing accessibility for a wider group of users. It improves daily workflow for employees and helps administrators make strategic decisions through an intuitive and centralized system.
 
 ## Technologies
 ### Frontend
