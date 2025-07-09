@@ -25,7 +25,7 @@ The project is a web application designed for managing a car rental service. Its
 - Language:
     - C#
 - Key Features:
-    - Dependency Injection, DTO, Controller, Repository patterns
+    - Dependency Injection, DTO, Controller and Repository patterns
     - Authentication and authorization
     - JWT
     - LINQ
