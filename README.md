@@ -50,15 +50,15 @@ The project is a web application designed for managing a car rental service. Its
 ## Main functions
 - **Admin**:
     - Rentals management
-    - Car management
-    - Client management
-    - Employee management
-    - Payment management
+    - Cars management
+    - Clients management
+    - Employees management
+    - Payments management
     - Account settings management
 - **Employee**:
     - Rentals management
-    - Car management
-    - Client management
+    - Cars management
+    - Clients management
     - Adding payments
     - Account settings management
 - **Visitor**:
